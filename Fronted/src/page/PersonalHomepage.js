@@ -65,7 +65,7 @@ const PersonalPage = () => {
         },
         xAxis: {
             data: Xdata,
-            axisLabel:{
+            axisLabel: {
                 interval: 0,
             }
         },
@@ -75,38 +75,60 @@ const PersonalPage = () => {
                 name: "购买量",
                 type: "bar",
                 data: Ydata,
-                label:{
+                label: {
                     show: true,
                     position: "top",
-                    formatter:"{c}"
+                    formatter: "{c}"
                 }
             },
         ],
     };
+    const fetchStatistics = async (time) => {
+        const formData = new FormData();
+        formData.append("time", time)
+        const result = await GetStatistics(formData)
+        if (result.code === 1) {
+            let x_data = [];
+            let y_data = [];
 
-    useEffect( () => {
-        const fetchStatistics = async ()=>{
-            const result = await GetStatistics()
-            if(result.code===1){
-                let x_data = [];
-                let y_data = [];
-
-                result.data.orderItems.map(item => {
-                    x_data.push(item.name);
-                    y_data.push(item.number);
-                })
-                SetXdata(x_data);
-                SetYdata(y_data);
-                setBookCount(result.data.bookCount);
-                setMoneyCount(result.data.moneyCount/100);
-                SetLoading(false);
-            }else {
-                alert(result.msg)
-            }
+            result.data.orderItems.map(item => {
+                x_data.push(item.name);
+                y_data.push(item.number);
+            })
+            SetXdata(x_data);
+            SetYdata(y_data);
+            setBookCount(result.data.bookCount);
+            setMoneyCount(result.data.moneyCount / 100);
+            SetLoading(false);
+        } else {
+            alert(result.msg)
         }
-        fetchStatistics().then();
+    }
+    useEffect(() => {
+
+        fetchStatistics(1).then();
     }, [])
-    if (loading) return (<></>);
+
+    const handleSubmit = async () => {
+        const timevalue = document.getElementById("selector").value;
+        SetLoading(true);
+        await fetchStatistics(timevalue);
+        SetLoading(false)
+    }
+    const ShowChart = (e) => {
+        if (loading) return (<></>);
+        else return (<>
+            <div style={{textAlign: "center"}}>
+                <Chart options={options}/>
+                <div className="flex items-center justify-center">
+                    <div className="mx-3"><Statistic title="购书数目" value={bookCount}/></div>
+                    <div className="mx-3"><Statistic title="金额总计" value={moneyCount} precision={2} prefix={"￥"}/>
+                    </div>
+                </div>
+            </div>
+        </>)
+    }
+
     return (
         <>
             <html lang="en">
@@ -118,20 +140,25 @@ const PersonalPage = () => {
             </head>
             <body>
             <Header/>
-            <div className="text-3xl pl-20 py-5">
-                个人主页
-            </div>
-            <div className="text-2xl pl-20 py-5">
-                一月内订单情况
-            </div>
-            <div style={{textAlign: "center"}}>
-                <Chart options={options}/>
-                <div className="flex items-center justify-center">
-                    <div className="mx-3"><Statistic title="购书数目" value={bookCount}/></div>
-                    <div className="mx-3"><Statistic title="金额总计" value={moneyCount} precision={2} prefix={"￥"}/></div>
+            <div class="pl-20">
+                <div className="text-3xl py-5">
+                    个人主页
                 </div>
-
+                <div className="text-2xl py-5">
+                    订单统计
+                </div>
+                <select className="border border-gray-300 rounded-md h-8 text-sm my-3" id="selector">
+                    <option label="一月内" value="0" selected/>
+                    <option label="一周内" value="1"/>
+                    <option label="一天内" value="2"/>
+                </select>
+                <button type={"button"} onClick={handleSubmit}
+                        className="focus:outline-none text-sm w-auto mt-3 py-3 rounded-md font-semibold text-white bg-blue-500 ring-4 flex p-4 h-6 justify-center items-center text-center gap-5">
+                    确定
+                </button>
+                {ShowChart(loading)}
             </div>
+
             {/*<div className="pt-10 flex justify-center w-full">*/}
 
             {/*    <Form*/}

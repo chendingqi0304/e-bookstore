@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Statistics getStatistics(Integer userId) {
-        return orderDao.getStatistics(userId);
+    public Statistics getStatistics(Integer userId,Integer time) {
+        return orderDao.getStatistics(userId,time);
     }
 
     @Override

@@ -43,4 +43,9 @@ public class BookDaoImpl implements BookDao {
     public void recoverBookByBookId(Integer bookId){
         bookRepository.recoverBook(bookId);
     }
+
+    @Override
+    public List<Book> searchByTitle(String title){
+        return bookRepository.findByTitleContaining(title);
+    }
 }

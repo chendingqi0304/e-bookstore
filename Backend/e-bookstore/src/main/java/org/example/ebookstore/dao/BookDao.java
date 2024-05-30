@@ -15,4 +15,6 @@ public interface BookDao {
     void deleteBookByBookId(Integer bookId);
 
     void recoverBookByBookId(Integer bookId);
+
+    List<Book> searchByTitle(String title);
 }

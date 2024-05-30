@@ -21,4 +21,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Transactional
     @Query("UPDATE Book o SET o.deleted=false WHERE o.bookId=:bookId")
     void recoverBook(Integer bookId);
+
+    List<Book> findByTitleContaining(String title);
 }

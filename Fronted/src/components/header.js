@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 export default function Header() {
     const account = JSON.parse((useSelector((state) => state.account)).accountInfo);
-    console.log(account)
+    //console.log(account)
     return (
         <>
             <div

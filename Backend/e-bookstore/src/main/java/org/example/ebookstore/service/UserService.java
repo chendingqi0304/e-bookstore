@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
     User findUserByUserId(Integer userId);
 
-    Statistics getStatistics(Integer userId);
+    Statistics getStatistics(Integer userId,Integer time);
 
     User findByemail(String email);
 

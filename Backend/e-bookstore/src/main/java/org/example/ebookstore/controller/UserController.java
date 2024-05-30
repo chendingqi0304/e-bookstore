@@ -24,8 +24,6 @@ public class UserController {
     private UserAuthRepository userAuthRepository;
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserAuthService userAuthService;
 
     @PostMapping("/newUser")
     public Result save(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email) {
@@ -50,11 +48,14 @@ public class UserController {
     }
 
     @PostMapping("/getStatistics")
-    public Result getStatistics() {
+    public Result getStatistics(@RequestParam("time")Integer time) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
-        return Result.success(userService.getStatistics(userId));
+        if(time<0||time>2){
+            return Result.error("错误的时间范围");
+        }
+        return Result.success(userService.getStatistics(userId,time));
     }
 
 

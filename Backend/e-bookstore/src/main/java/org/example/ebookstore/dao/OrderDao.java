@@ -11,7 +11,9 @@ public interface OrderDao {
     List<Order> selectByUserId(Integer userId);
     void insertOrder(Order order);
 
-    Statistics getStatistics(Integer userId);
+    Statistics getStatistics(Integer userId,Integer time);
 
-    List<UserListItem> getUserList();
+    List<UserListItem> getUserList(Integer time);
+
+    List<OrderItem> getBookList(Integer time);
 }

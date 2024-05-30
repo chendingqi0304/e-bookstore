@@ -73,7 +73,10 @@ public class OrderServiceImpl implements OrderService {
         }
     }
     @Override
-    public List<UserListItem> getUserList(){
-        return orderDao.getUserList();
+    public List<UserListItem> getUserList(Integer time){
+        return orderDao.getUserList(time);
     }
+
+    @Override
+    public List<OrderItem> getBookList(Integer time){return orderDao.getBookList(time);}
 }

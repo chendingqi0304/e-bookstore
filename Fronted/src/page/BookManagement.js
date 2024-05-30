@@ -2,7 +2,7 @@ import Header from "../components/header";
 import React, {useEffect} from "react";
 import {useState} from "react";
 import {InputNumber, Modal, Space, Table, Typography} from "antd";
-import {AddBook, AllBookList, DeleteBook, EditBook, RecoverBook} from "../utils/BookAPI";
+import {AddBook, AllBookList, DeleteBook, EditBook, RecoverBook, SearchByTitle} from "../utils/BookAPI";
 
 const {Paragraph} = Typography;
 const BookManagement = () => {
@@ -194,7 +194,7 @@ const BookManagement = () => {
         formdata.append("author", BookAuthor);
         formdata.append("rest", BookRest);
         formdata.append("picture", picture);
-        formdata.append("isbn",BookISBN)
+        formdata.append("isbn", BookISBN)
         const result = await EditBook(formdata)
         console.log(result)
         if (result.code === 1) {
@@ -292,10 +292,29 @@ const BookManagement = () => {
     }
 
     const handleSearch = async () => {
-
+        setLoading(true);
+        const title = document.getElementById("search").value
+        if (title === null) {
+            alert("请输入书名")
+            return
+        }
+        const formData = new FormData()
+        formData.append("title", title)
+        const result = await SearchByTitle(formData)
+        if (result.code === 1) {
+            setBookList(result.data);
+        } else {
+            alert(result.msg)
+        }
+        setLoading(false)
     }
-
+const showList=(e)=>{
     if (loading) return (<></>)
+    else return (<>
+        <Table className="px-10" columns={columns} dataSource={bookList}/>
+    </>)
+}
+
 
 
     return <>
@@ -310,7 +329,7 @@ const BookManagement = () => {
         <Header class=""></Header>
         <div class="mx-24 mt-8">
             {showModal()}
-            <div class="text-3xl pl-20 py-5">书籍管理</div>
+            <div class="text-3xl py-5">书籍管理</div>
             <div class="text-xl">添加书籍</div>
             <form class="px-10 py-5 mb-9 border border-solid border-gray-400 rounded-2xl w-auto">
                 <div>书名</div>
@@ -349,8 +368,8 @@ const BookManagement = () => {
                         class="focus:outline-none text-sm w-auto py-3 rounded-md font-semibold text-white bg-blue-500 ring-4 flex p-4 h-6 justify-center items-center text-center gap-5">搜索
                 </button>
             </div>
+            {showList(loading)}
 
-            <Table className="px-10" columns={columns} dataSource={bookList}/>
         </div>
 
         </body>

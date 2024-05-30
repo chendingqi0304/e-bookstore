@@ -104,8 +104,26 @@ export const EditBook = async (formdata) => {
         })
         if (response.ok) {
             return await response.json();
+        }else {
+            alert("编辑失败")
         }
     } catch (error) {
         throw new Error("编辑失败", error)
+    }
+}
+export const SearchByTitle=async (formdata) => {
+    try {
+        const response=await fetch(backendLink + "/searchByTitle", {
+            method: "POST",
+            credentials: "include",
+            body: formdata,
+        })
+        if (response.ok){
+            return await response.json();
+        }else {
+            alert("搜索失败")
+        }
+    }catch (error) {
+        throw new Error("搜索失败", error)
     }
 }

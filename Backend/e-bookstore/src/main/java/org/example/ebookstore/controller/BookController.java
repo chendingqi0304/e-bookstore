@@ -150,4 +150,8 @@ public class BookController {
             return Result.success();
         }
     }
+    @PostMapping("/searchByTitle")
+    public Result searchByTitle(@RequestParam("title") String title) {
+        return Result.success(bookService.searchByTitle(title));
+    }
 }

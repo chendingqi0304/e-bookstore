@@ -16,4 +16,6 @@ public interface BookService {
     List<Book> getBooks();
 
     void recoverBookByBookId(Integer bookId);
+
+    List<Book> searchByTitle(String title);
 }

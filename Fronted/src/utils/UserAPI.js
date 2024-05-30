@@ -50,11 +50,12 @@ export const FindUserByUserId = async (formdata) => {
     }
 };
 
-export const GetStatistics = async () => {
+export const GetStatistics = async (formdata) => {
     try {
         const response = await fetch(backendLink + "/getStatistics", {
             method: "POST",
             credentials: "include",
+            body:formdata,
         })
         if (response.ok) {
             return await response.json();

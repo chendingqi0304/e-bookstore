@@ -62,8 +62,8 @@ public class OrderController {
         return Result.success();
     }
 
-    @PostMapping("/UserList")
-    public Result UserList() {
+    @PostMapping("/UserStatisticsList")
+    public Result UserList(@RequestParam("time")Integer time) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
@@ -71,11 +71,14 @@ public class OrderController {
         if(user == null||user.getType()!=1) {
             return Result.error("无权限");
         }
-        return Result.success(orderService.getUserList());
+        if(time<0||time>2){
+            return Result.error("错误的时间范围");
+        }
+        return Result.success(orderService.getUserList(time));
     }
 
-    @PostMapping("/BookList")
-    public Result BookList() {
+    @PostMapping("/BookStatisticsList")
+    public Result BookList(@RequestParam("time")Integer time) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
@@ -83,6 +86,9 @@ public class OrderController {
         if(user == null||user.getType()!=1) {
             return Result.error("无权限");
         }
-        return Result.success();
+        if(time<0||time>2){
+            return Result.error("错误的时间范围");
+        }
+        return Result.success(orderService.getBookList(time));
     }
 }

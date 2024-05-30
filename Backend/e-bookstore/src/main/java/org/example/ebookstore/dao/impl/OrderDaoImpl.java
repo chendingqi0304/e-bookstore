@@ -24,8 +24,6 @@ public class OrderDaoImpl implements OrderDao {
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
-    private OrderItemRepository orderItemRepository;
-    @Autowired
     private UserRepository userRepository;
 
     @Override
@@ -40,9 +38,22 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Statistics getStatistics(Integer userId) {
+    public Statistics getStatistics(Integer userId,Integer time) {
         LocalDateTime end = LocalDateTime.now();
-        LocalDateTime start = end.minusMonths(1);
+        LocalDateTime start;
+        switch (time) {
+            case 0:
+                start = end.minusMonths(1);
+                break;
+            case 1:
+                start = end.minusWeeks(1);
+                break;
+            case 2:
+                start = end.minusDays(2);
+                break;
+            default:
+                return null;
+        }
         List<Order> orderIdList = orderRepository.getUserStatistics(userId, start, end);
         List<OrderItem> orderStatistics = new ArrayList<>();
         Integer bookCount = 0;
@@ -81,9 +92,22 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<UserListItem> getUserList() {
+    public List<UserListItem> getUserList(Integer time) {
         LocalDateTime end = LocalDateTime.now();
-        LocalDateTime start = end.minusMonths(1);
+        LocalDateTime start;
+        switch (time) {
+            case 0:
+                start = end.minusMonths(1);
+                break;
+            case 1:
+                start = end.minusWeeks(1);
+                break;
+            case 2:
+                start = end.minusDays(2);
+                break;
+            default:
+                return null;
+        }
         List<Order> orderList = orderRepository.getOrderList(start, end);
         List<UserListItem> userListItems = new ArrayList<>();
         for (Order order : orderList) {
@@ -108,6 +132,55 @@ public class OrderDaoImpl implements OrderDao {
                 userListItems.add(newUserListItem);
             }
         }
+        userListItems.sort((o1, o2) -> {
+            return Integer.compare(o2.getMoneyCount(), o1.getMoneyCount());
+        });
         return userListItems;
+    }
+
+    @Override
+    public List<OrderItem> getBookList(Integer time) {
+        LocalDateTime end = LocalDateTime.now();
+        LocalDateTime start;
+        switch (time) {
+            case 0:
+                start = end.minusMonths(1);
+                break;
+            case 1:
+                start = end.minusWeeks(1);
+                break;
+            case 2:
+                start = end.minusDays(2);
+                break;
+            default:
+                return null;
+        }
+        List<Order> orderIdList = orderRepository.getOrderList(start, end);
+        List<OrderItem> orderStatistics = new ArrayList<>();
+        for (Order order : orderIdList) {
+            for (OrderItem orderItem : order.getOrderItems()) {
+                boolean found = false;
+                for (OrderItem statistic : orderStatistics) {
+                    if (statistic.getBookId() == orderItem.getBookId()) {
+                        statistic.setNumber(statistic.getNumber() + orderItem.getNumber());
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    OrderItem newOrderItem = new OrderItem();
+                    newOrderItem.setName(orderItem.getName());
+                    newOrderItem.setBookId(orderItem.getBookId());
+                    newOrderItem.setNumber(orderItem.getNumber());
+                    orderStatistics.add(newOrderItem);
+                }
+            }
+        }
+
+        // 使用 Comparator 对 List<OrderItem> 按 number 字段降序排序
+        orderStatistics.sort((o1, o2) -> {
+            return Integer.compare(o2.getNumber(), o1.getNumber()); // 降序排序
+        });
+        return orderStatistics;
     }
 }

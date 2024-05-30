@@ -42,4 +42,8 @@ public class BookServiceImpl implements BookService{
     public void recoverBookByBookId(Integer bookId){
         bookDao.recoverBookByBookId(bookId);
     }
+    @Override
+    public List<Book> searchByTitle(String title){
+        return bookDao.searchByTitle(title);
+    }
 }

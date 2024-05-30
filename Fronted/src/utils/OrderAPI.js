@@ -48,3 +48,36 @@ export const BuyByBookId = async (formdata) => {
         throw new Error("提交订单失败", error)
     }
 }
+
+export const UserStatisticsList=async (formdata)=>{
+    try{
+        const response = await fetch(backendLink + "/UserStatisticsList", {
+            method: "POST",
+            credentials: "include",
+            body: formdata,
+        })
+        if (response.ok){
+            return await response.json();
+        }else {
+            alert("获取用户统计信息失败")
+        }
+    }catch (error){
+        throw new error("获取用户统计信息失败，error")
+    }
+}
+export const BookStatisticsList=async (formdata)=>{
+    try{
+        const response = await fetch(backendLink + "/BookStatisticsList", {
+            method: "POST",
+            credentials: "include",
+            body: formdata,
+        })
+        if (response.ok){
+            return await response.json();
+        }else {
+            alert("获取图书统计信息失败")
+        }
+    }catch (error){
+        throw new error("获取图书统计信息失败，error")
+    }
+}
