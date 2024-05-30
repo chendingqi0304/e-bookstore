@@ -29,6 +29,10 @@ export default function Header() {
                                    className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
                                     <div>用户管理</div>
                                 </a>
+                                <a href={`/orderManagement`}
+                                   className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
+                                    <div>订单管理</div>
+                                </a>
                                 <a href={`/list`}
                                    className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
                                     <div>表单统计</div>
@@ -36,6 +40,10 @@ export default function Header() {
                             </>
 
                             : <></>}
+                        <a href={`/AllBook`}
+                           className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
+                            <div>全部书籍</div>
+                        </a>
                         <a href={`/Mycart/${account.userId}`}
                            className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
                             <div>购物车</div>

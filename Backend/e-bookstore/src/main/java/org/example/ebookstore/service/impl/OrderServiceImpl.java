@@ -10,6 +10,7 @@ import org.example.ebookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,6 +29,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrders(Integer userId) {
         return orderDao.selectByUserId(userId);
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderDao.getAllOrders();
     }
 
     @Override
@@ -61,7 +67,8 @@ public class OrderServiceImpl implements OrderService {
             OrderItem orderItem = new OrderItem();
 
             orderItem.setOrder(order);
-            orderItem.setNumber(cart.getNumber());;
+            orderItem.setNumber(cart.getNumber());
+            ;
             orderItem.setName(book.getTitle());
             orderItem.setBookId(book.getBookId());
             orderItem.setPrice(book.getPrice() * cart.getNumber());
@@ -72,11 +79,34 @@ public class OrderServiceImpl implements OrderService {
             bookDao.insert(book);
         }
     }
+
     @Override
-    public List<UserListItem> getUserList(Integer time){
+    public List<UserListItem> getUserList(Integer time) {
         return orderDao.getUserList(time);
     }
 
     @Override
-    public List<OrderItem> getBookList(Integer time){return orderDao.getBookList(time);}
+    public List<OrderItem> getBookList(Integer time) {
+        return orderDao.getBookList(time);
+    }
+
+    @Override
+    public List<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title) {
+        return orderDao.getSelectedOrders(userId, startTime, endTime, title);
+    }
+
+    @Override
+    public List<Order> getAllSelectedOrders(LocalDate startDate, LocalDate endDate, String title) {
+        return orderDao.getAllSelectedOrders(startDate, endDate, title);
+    }
+
+    @Override
+    public List<Order> getOrdersByTitle(Integer userId, String title) {
+        return orderDao.getOrdersByTitle(userId, title);
+    }
+
+    @Override
+    public List<Order> getAllOrdersByTitle(String title) {
+        return orderDao.getAllOrdersByTitle(title);
+    }
 }

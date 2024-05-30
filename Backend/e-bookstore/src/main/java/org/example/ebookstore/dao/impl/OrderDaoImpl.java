@@ -2,10 +2,8 @@ package org.example.ebookstore.dao.impl;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.example.ebookstore.dao.OrderDao;
-import org.example.ebookstore.entity.Order;
-import org.example.ebookstore.entity.OrderItem;
-import org.example.ebookstore.entity.Statistics;
-import org.example.ebookstore.entity.UserListItem;
+import org.example.ebookstore.entity.*;
+import org.example.ebookstore.repository.BookRepository;
 import org.example.ebookstore.repository.OrderItemRepository;
 import org.example.ebookstore.repository.OrderRepository;
 import org.example.ebookstore.repository.UserRepository;
@@ -13,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +24,8 @@ public class OrderDaoImpl implements OrderDao {
     private OrderRepository orderRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
     @Override
     public List<Order> selectByUserId(Integer userId) {
@@ -33,12 +34,19 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> getAllOrders() {
+        List<Order> returnValue = orderRepository.findAll();
+        returnValue.sort(((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId())));
+        return returnValue;
+    }
+
+    @Override
     public void insertOrder(Order order) {
         orderRepository.save(order);
     }
 
     @Override
-    public Statistics getStatistics(Integer userId,Integer time) {
+    public Statistics getStatistics(Integer userId, Integer time) {
         LocalDateTime end = LocalDateTime.now();
         LocalDateTime start;
         switch (time) {
@@ -132,9 +140,7 @@ public class OrderDaoImpl implements OrderDao {
                 userListItems.add(newUserListItem);
             }
         }
-        userListItems.sort((o1, o2) -> {
-            return Integer.compare(o2.getMoneyCount(), o1.getMoneyCount());
-        });
+        userListItems.sort((o1, o2) -> Integer.compare(o2.getMoneyCount(), o1.getMoneyCount()));
         return userListItems;
     }
 
@@ -182,5 +188,118 @@ public class OrderDaoImpl implements OrderDao {
             return Integer.compare(o2.getNumber(), o1.getNumber()); // 降序排序
         });
         return orderStatistics;
+    }
+
+    @Override
+    public List<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title) {
+        if (title == "") {
+            return orderRepository.getSelectedOrders(userId, startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+        } else {
+            List<Order> orderList = orderRepository.getSelectedOrders(userId, startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+            List<Book> bookList = bookRepository.findByTitleContaining(title);
+            List<Order> returnValue = new ArrayList<>();
+            for (Order order : orderList) {
+                boolean found = false;
+                for (OrderItem orderItem : order.getOrderItems()) {
+                    for (Book book : bookList) {
+                        if (book.getBookId() == orderItem.getBookId()) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        break;
+                    }
+                }
+                if (found) {
+                    returnValue.add(order);
+                }
+            }
+            returnValue.sort((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId()));
+            return returnValue;
+        }
+    }
+
+    @Override
+    public List<Order> getAllSelectedOrders(LocalDate startTime, LocalDate endTime, String title) {
+        if (title == "") {
+            return orderRepository.getAllSelectedOrders(startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+        } else {
+            List<Order> orderList = orderRepository.getAllSelectedOrders(startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+            List<Book> bookList = bookRepository.findByTitleContaining(title);
+            List<Order> returnValue = new ArrayList<>();
+            for (Order order : orderList) {
+                boolean found = false;
+                for (OrderItem orderItem : order.getOrderItems()) {
+                    for (Book book : bookList) {
+                        if (book.getBookId() == orderItem.getBookId()) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        break;
+                    }
+                }
+                if (found) {
+                    returnValue.add(order);
+                }
+            }
+            returnValue.sort((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId()));
+            return returnValue;
+        }
+    }
+
+    @Override
+    public List<Order> getOrdersByTitle(Integer userId, String title) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "orderId");
+        List<Order> orderList = orderRepository.findByUserId(userId, sort);
+        List<Book> bookList = bookRepository.findByTitleContaining(title);
+        List<Order> returnValue = new ArrayList<>();
+        for (Order order : orderList) {
+            boolean found = false;
+            for (OrderItem orderItem : order.getOrderItems()) {
+                for (Book book : bookList) {
+                    if (book.getBookId() == orderItem.getBookId()) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    break;
+                }
+            }
+            if (found) {
+                returnValue.add(order);
+            }
+        }
+        returnValue.sort((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId()));
+        return returnValue;
+    }
+
+    @Override
+    public List<Order> getAllOrdersByTitle(String title) {
+        List<Order> orderList = orderRepository.findAll();
+        List<Book> bookList = bookRepository.findByTitleContaining(title);
+        List<Order> returnValue = new ArrayList<>();
+        for (Order order : orderList) {
+            boolean found = false;
+            for (OrderItem orderItem : order.getOrderItems()) {
+                for (Book book : bookList) {
+                    if (book.getBookId() == orderItem.getBookId()) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    break;
+                }
+            }
+            if (found) {
+                returnValue.add(order);
+            }
+        }
+        returnValue.sort((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId()));
+        return returnValue;
     }
 }

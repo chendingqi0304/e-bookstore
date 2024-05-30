@@ -16,6 +16,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import Register from "./page/Register";
 import UserManagement from "./page/UserManagement";
 import List from "./page/List";
+import AdminRoute from "./components/AdminRoute";
+import AllBook from "./page/AllBook";
+import OrderManagement from "./page/OrderManagement";
 
 function App() {
 
@@ -23,16 +26,18 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/login" element={<LoginPage/>}/>
-                <Route path="/Main" element={<MainPage/>}/>
+                <Route path="/Main" element={<PrivateRoute><MainPage/></PrivateRoute>}/>
                 <Route path="/forgetPwd" element={<ForgetPwd/>}/>
-                <Route path="/PersonalPage" element={<PersonalPage/>}/>
-                <Route path="/Mycart/:name" element={<Mycart/>}/>
-                <Route path="/book/:name" element={<BuyBook/>}/>
-                <Route path="/Myorder/:name" element={<Myorder/>}/>
+                <Route path="/PersonalPage" element={<PrivateRoute><PersonalPage/></PrivateRoute>}/>
+                <Route path="/Mycart/:name" element={<PrivateRoute><Mycart/></PrivateRoute>}/>
+                <Route path="/book/:name" element={<PrivateRoute><BuyBook/></PrivateRoute>}/>
+                <Route path="/AllBook" element={<PrivateRoute><AllBook/></PrivateRoute>}></Route>
+                <Route path="/Myorder/:name" element={<PrivateRoute><Myorder/></PrivateRoute>}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path="/bookManagement" element={<PrivateRoute><BookManagement/></PrivateRoute>}/>
-                <Route path="/userManagement" element={<PrivateRoute><UserManagement/></PrivateRoute>}/>
-                <Route path="/List" element={<PrivateRoute><List/></PrivateRoute>}/>
+                <Route path="/bookManagement" element={<AdminRoute><BookManagement/></AdminRoute>}/>
+                <Route path="/userManagement" element={<AdminRoute><UserManagement/></AdminRoute>}/>
+                <Route path="/List" element={<AdminRoute><List/></AdminRoute>}/>
+                <Route path="/orderManagement" element={<AdminRoute><OrderManagement/></AdminRoute>}/>
                 <Route path="*" element={<Navigate to="/login" replace />} />
                     {/* 其他路由规则 */}
             </Routes>

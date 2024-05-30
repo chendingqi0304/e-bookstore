@@ -1,13 +1,10 @@
+import React, {useEffect, useState} from "react";
+import {GetAllOrder, GetAllSelectedOrder, GetOrder, GetSelectedOrder} from "../utils/OrderAPI";
+import {DatePicker, Table} from "antd";
 import title from "../img/E-BookStore.png";
 import Header from "../components/header";
-import React, {useEffect, useState} from "react";
-
-import {Table} from 'antd';
-import {DatePicker} from 'antd';
-import {GetOrder, GetSelectedOrder} from "../utils/OrderAPI";
 
 const {RangePicker} = DatePicker;
-
 
 const columns = [
     {
@@ -33,14 +30,14 @@ const columns = [
     },
 ];
 
-const Myorder = () => {
+const OrderManagement=()=>{
     const [orderList, setOrderList] = useState([]);
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
     useEffect(() => {
         const fetchOrder = async () => {
-            const result = await GetOrder();
+            const result = await GetAllOrder();
             console.log(result)
             if (result.code === 1) {
                 for (let i = 0; i < result.data.length; i++) {
@@ -69,7 +66,7 @@ const Myorder = () => {
         formdata.append("start", startDate);
         formdata.append("end", endDate);
         formdata.append("title", title);
-        const result = await GetSelectedOrder(formdata);
+        const result = await GetAllSelectedOrder(formdata);
         for (let i = 0; i < result.data.length; i++) {
             result.data[i].orderTime = result.data[i].orderTime.replace("T", " ")
         }
@@ -85,7 +82,11 @@ const Myorder = () => {
                 {orderList.map((item, index) => <>
                     <div className="px-10 py-3 flex justify-between">
                         <div className="text-2xl">Order {index + 1}</div>
-                        <div>下单时间：{item.orderTime}</div>
+                        <div >
+                            <div class="mx-3">用户userId：{item.userId}</div>
+                            <div class="mx-3">下单时间：{item.orderTime}</div>
+                        </div>
+
                     </div>
 
                     <Table className="px-10" columns={columns} dataSource={item.orderItems} pagination={false}
@@ -121,9 +122,8 @@ const Myorder = () => {
         <body>
         <Header></Header>
         <div class="mx-20">
-
             <div className="text-3xl py-5">
-                我的订单
+                订单管理
             </div>
             <RangePicker onChange={handleDateSelector}></RangePicker>
             <div className="flex items-center">
@@ -140,4 +140,4 @@ const Myorder = () => {
         </html>
     </>;
 }
-export default Myorder
+export default OrderManagement;

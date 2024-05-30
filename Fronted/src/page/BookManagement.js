@@ -23,11 +23,17 @@ const BookManagement = () => {
     }
 
     const columns = [
+        {title: "购买链接",
+            dataIndex: "bookId",
+            key: "bookId",
+            render: (text) =>
+                <a href={`/book/${text}`}><div class="min-w-16 text-blue-400 underline">购买链接</div></a>
+        },
         {
             title: "封面",
             dataIndex: "picture",
             key: "picture",
-            render: (item) => <div class="flex items-center"><img src={`data:${item.type};base64, ${item}`}/></div>
+            render: (item) => <div className="flex items-center"><img src={`data:${item.type};base64, ${item}`}/></div>
         },
         {
             title: "书名",

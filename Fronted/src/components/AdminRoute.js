@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 const PrivateRoute = ({ children }) => {
     const account=JSON.parse((useSelector((state)=>state.account)).accountInfo);
-    if (account==null) {
+    if (account!=null&&account.type!==1) {
         return <Navigate to="/login" />;
     }
     return children;

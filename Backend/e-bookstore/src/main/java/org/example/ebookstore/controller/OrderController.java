@@ -11,8 +11,10 @@ import org.example.ebookstore.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @RestController
@@ -33,6 +35,52 @@ public class OrderController {
         return Result.success(orderService.getOrders(userId));
     }
 
+    @PostMapping("/getAllOrder")
+    public Result getAllOrder() {
+        HttpSession session = SessionUtils.getSession();
+        log.info("sessionID: {}", session.getId());
+        Integer userId = (Integer) session.getAttribute("userId");
+        User user = userService.findUserByUserId(userId);
+        if (user == null || user.getType() != 1) {
+            return Result.error("无此用户或无权限");
+        } else {
+            return Result.success(orderService.getAllOrders());
+        }
+    }
+
+    @PostMapping("/getSelectedOrder")
+    public Result getSelectedOrder(@RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("title") String title) {
+        HttpSession session = SessionUtils.getSession();
+        log.info("sessionID: {}", session.getId());
+        Integer userId = (Integer) session.getAttribute("userId");
+        log.info("{},{}", start, end);
+        if (!Objects.equals(start, "") && !Objects.equals(end, "")) {
+            LocalDate startDate = LocalDate.parse(start);
+            LocalDate endDate = LocalDate.parse(end);
+            return Result.success(orderService.getSelectedOrders(userId, startDate, endDate, title));
+        } else {
+            return Result.success(orderService.getOrdersByTitle(userId, title));
+        }
+    }
+
+    @PostMapping("/getAllSelectedOrder")
+    public Result getAllSelectedOrder(@RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("title") String title) {
+        HttpSession session = SessionUtils.getSession();
+        log.info("sessionID: {}", session.getId());
+        Integer userId = (Integer) session.getAttribute("userId");
+        User user = userService.findUserByUserId(userId);
+        if (user == null || user.getType() != 1) {
+            return Result.error("无此用户或无权限");
+        } else {
+            if (!Objects.equals(start, "") && !Objects.equals(end, "")) {
+                LocalDate startDate = LocalDate.parse(start);
+                LocalDate endDate = LocalDate.parse(end);
+                return Result.success(orderService.getAllSelectedOrders(startDate, endDate, title));
+            } else {
+                return Result.success(orderService.getAllOrdersByTitle(title));
+            }
+        }
+    }
 
     @PostMapping("/BuybyCartIds")
     public Result BuyByCartIds(@RequestParam("cartIdList") List<Integer> cartIds) {
@@ -63,30 +111,30 @@ public class OrderController {
     }
 
     @PostMapping("/UserStatisticsList")
-    public Result UserList(@RequestParam("time")Integer time) {
+    public Result UserList(@RequestParam("time") Integer time) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         User user = userService.findUserByUserId(userId);
-        if(user == null||user.getType()!=1) {
+        if (user == null || user.getType() != 1) {
             return Result.error("无权限");
         }
-        if(time<0||time>2){
+        if (time < 0 || time > 2) {
             return Result.error("错误的时间范围");
         }
         return Result.success(orderService.getUserList(time));
     }
 
     @PostMapping("/BookStatisticsList")
-    public Result BookList(@RequestParam("time")Integer time) {
+    public Result BookList(@RequestParam("time") Integer time) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         User user = userService.findUserByUserId(userId);
-        if(user == null||user.getType()!=1) {
+        if (user == null || user.getType() != 1) {
             return Result.error("无权限");
         }
-        if(time<0||time>2){
+        if (time < 0 || time > 2) {
             return Result.error("错误的时间范围");
         }
         return Result.success(orderService.getBookList(time));
