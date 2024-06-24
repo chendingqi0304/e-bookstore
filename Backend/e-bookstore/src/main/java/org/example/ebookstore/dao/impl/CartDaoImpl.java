@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -16,7 +17,14 @@ public class CartDaoImpl implements CartDao {
     private CartRepository cartRepository;
     @Override
     public List<Cart> selectByUserId(Integer userId){
-        return cartRepository.findByUserId(userId);
+        List<Cart> carts = cartRepository.findByUserId(userId);
+        List<Cart> returnValue = new ArrayList<Cart>();
+        for (Cart cart : carts) {
+            if(!cart.getBook().getDeleted()){
+                returnValue.add(cart);
+            }
+        }
+        return returnValue;
     }
     @Override
     public Cart selectBycartId(Integer cartId){

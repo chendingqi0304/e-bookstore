@@ -99,8 +99,8 @@ const List = () => {
     }
 
     useEffect(() => {
-        fetchUserList(1).then(r => {
-            fetchBookList(1).then(r => {
+        fetchUserList(0).then(r => {
+            fetchBookList(0).then(r => {
                 SetLoading(false)
             });
         });

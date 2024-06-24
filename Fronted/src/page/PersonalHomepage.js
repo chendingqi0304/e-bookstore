@@ -106,7 +106,7 @@ const PersonalPage = () => {
     }
     useEffect(() => {
 
-        fetchStatistics(1).then();
+        fetchStatistics(0).then();
     }, [])
 
     const handleSubmit = async () => {

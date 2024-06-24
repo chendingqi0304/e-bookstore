@@ -5,23 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e28a3d3-b5d0-4886-98db-10a5abf03b24" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/AdminRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/AllBook.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/OrderManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/config/SessionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/config/SessionConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/CartDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/CartDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PrivateRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dist/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/output.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/BookManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/BookManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Myorder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Myorder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/OrderAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/OrderAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/List.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/PersonalHomepage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/PersonalHomepage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/BookAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BookAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/UserAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/UserAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mysql.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../mysql.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +54,7 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.BookManagement.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.MainPageContent.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.Mycart.js.executor&quot;: &quot;Run&quot;,
@@ -72,7 +69,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -181,6 +178,17 @@
       <workItem from="1717026666511" duration="5672000" />
       <workItem from="1717033431969" duration="5060000" />
       <workItem from="1717043599523" duration="7519000" />
+      <workItem from="1717123894261" duration="224000" />
+      <workItem from="1717289633784" duration="134000" />
+      <workItem from="1717289798944" duration="6000" />
+      <workItem from="1717294175174" duration="412000" />
+      <workItem from="1717295138276" duration="609000" />
+      <workItem from="1717665921745" duration="133000" />
+      <workItem from="1717728263585" duration="144000" />
+      <workItem from="1717765849341" duration="7025000" />
+      <workItem from="1717831199160" duration="826000" />
+      <workItem from="1718418308390" duration="42000" />
+      <workItem from="1718442079634" duration="100000" />
     </task>
     <servers />
   </component>

@@ -35,6 +35,7 @@ export const AddBook = async (formdata) => {
         var response = await fetch(backendLink + "/addbook", {
             method: "POST",
             body: formdata,
+            credentials: "include",
         })
         if (!response.ok) {
             alert("error")

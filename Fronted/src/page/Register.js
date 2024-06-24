@@ -9,7 +9,7 @@ import Captcha_Logo from "../img/captcha_logo.png";
 import {useDispatch, useSelector} from "react-redux";
 import {FindUserByEmail, NewUser} from "../utils/UserAPI";
 import {GetIdentifyCode, Identify} from "../utils/IdentifyAPI";
-
+import validator from 'validator';
 
 
 const RegisterPage = () => {
@@ -118,11 +118,16 @@ const RegisterPage = () => {
             alert("请输入邮箱")
             return
         }
+        if(!validator.isEmail(email)){
+            alert("该邮箱不合法");
+            return;
+        }
         const data = await FindUserByEmail(email);
         if (data.code === 1) {
             alert("该邮箱已被注册");
             return;
         }
+
         const data2 = await GetIdentifyCode(email);
         if (data2.code === 1) {
             alert("邮件已成功发送，请及时查看邮箱及垃圾邮件");

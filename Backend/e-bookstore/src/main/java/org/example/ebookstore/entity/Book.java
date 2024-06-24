@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
@@ -16,8 +13,7 @@ import lombok.Setter;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "bookId")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
@@ -37,7 +33,6 @@ public class Book {
     private String introduction;
     @Column(name = "picture")
     private byte[] picture;
-    //private String[] tag;
     @Column(name = "rest")
     private Integer rest;
     @Column(name = "type")
@@ -46,4 +41,8 @@ public class Book {
     private boolean deleted;
     @Column(name = "isbn")
     private String isbn;
+
+    public boolean getDeleted() {
+        return deleted;
+    }
 }

@@ -5,6 +5,7 @@ export const NewUser = async (payload) => {
         console.log("new user");
         const response = await fetch(backendLink + "/newUser", {
             method: "POST",
+            credentials: "include",
             body: payload,
         });
         if (response.ok) {
@@ -22,6 +23,7 @@ export const FindUserByEmail = async (email) => {
     try {
         const response = await fetch(backendLink + "/findUserByemail", {
             method: "POST",
+            credentials: "include",
             body: email,
         });
         if (response.ok) {
@@ -38,6 +40,7 @@ export const FindUserByUserId = async (formdata) => {
     try {
         const response = await fetch(backendLink + "/findUserByuserId", {
             method: "POST",
+            credentials: "include",
             body: formdata,
         });
         if (response.ok) {
