@@ -4,6 +4,8 @@ import org.example.ebookstore.dao.CartDao;
 import org.example.ebookstore.entity.Cart;
 import org.example.ebookstore.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,8 @@ public class CartServiceImpl implements CartService {
     private CartDao cartDao;
 
     @Override
-    public List<Cart> getCarts(Integer userId) {
-        return cartDao.selectByUserId(userId);
+    public Page<Cart> getCarts(Integer userId, Pageable pageable) {
+        return cartDao.selectByUserId(userId,pageable);
     }
 
     @Override

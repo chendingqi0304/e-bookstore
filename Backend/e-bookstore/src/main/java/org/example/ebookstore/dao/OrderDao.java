@@ -4,12 +4,14 @@ import org.example.ebookstore.entity.Order;
 import org.example.ebookstore.entity.OrderItem;
 import org.example.ebookstore.entity.Statistics;
 import org.example.ebookstore.entity.UserListItem;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderDao {
-    List<Order> selectByUserId(Integer userId);
+    Page<Order> selectByUserId(Integer userId, Pageable pageable);
 
     void insertOrder(Order order);
 
@@ -19,13 +21,13 @@ public interface OrderDao {
 
     List<OrderItem> getBookList(Integer time);
 
-    List<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title);
+    Page<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title,Pageable pageable);
 
-    List<Order> getAllSelectedOrders(LocalDate startTime, LocalDate endTime, String title);
+    Page<Order> getAllSelectedOrders(LocalDate startTime, LocalDate endTime, String title,Pageable pageable);
 
-    List<Order> getOrdersByTitle(Integer userId, String title);
+    Page<Order> getOrdersByTitle(Integer userId, String title,Pageable pageable);
 
-    List<Order> getAllOrdersByTitle(String title);
+    Page<Order> getAllOrdersByTitle(String title,Pageable pageable);
 
-    List<Order> getAllOrders();
+    Page<Order> getAllOrders(Pageable pageable);
 }

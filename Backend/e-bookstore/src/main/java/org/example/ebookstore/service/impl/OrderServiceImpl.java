@@ -8,6 +8,8 @@ import org.example.ebookstore.dao.OrderItemDao;
 import org.example.ebookstore.entity.*;
 import org.example.ebookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -27,13 +29,13 @@ public class OrderServiceImpl implements OrderService {
     private OrderItemDao orderItemDao;
 
     @Override
-    public List<Order> getOrders(Integer userId) {
-        return orderDao.selectByUserId(userId);
+    public Page<Order> getOrders(Integer userId,Pageable pageable) {
+        return orderDao.selectByUserId(userId,pageable);
     }
 
     @Override
-    public List<Order> getAllOrders() {
-        return orderDao.getAllOrders();
+    public Page<Order> getAllOrders(Pageable pageable) {
+        return orderDao.getAllOrders(pageable);
     }
 
     @Override
@@ -91,22 +93,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title) {
-        return orderDao.getSelectedOrders(userId, startTime, endTime, title);
+    public Page<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title,Pageable pageable) {
+        return orderDao.getSelectedOrders(userId, startTime, endTime, title,pageable);
     }
 
     @Override
-    public List<Order> getAllSelectedOrders(LocalDate startDate, LocalDate endDate, String title) {
-        return orderDao.getAllSelectedOrders(startDate, endDate, title);
+    public Page<Order> getAllSelectedOrders(LocalDate startDate, LocalDate endDate, String title,Pageable pageable) {
+        return orderDao.getAllSelectedOrders(startDate, endDate, title,pageable);
     }
 
     @Override
-    public List<Order> getOrdersByTitle(Integer userId, String title) {
-        return orderDao.getOrdersByTitle(userId, title);
+    public Page<Order> getOrdersByTitle(Integer userId, String title,Pageable pageable) {
+        return orderDao.getOrdersByTitle(userId, title,pageable);
     }
 
     @Override
-    public List<Order> getAllOrdersByTitle(String title) {
-        return orderDao.getAllOrdersByTitle(title);
+    public Page<Order> getAllOrdersByTitle(String title,Pageable pageable) {
+        return orderDao.getAllOrdersByTitle(title,pageable);
     }
 }

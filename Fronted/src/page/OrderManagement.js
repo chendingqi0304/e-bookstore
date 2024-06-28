@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {GetAllOrder, GetAllSelectedOrder, GetOrder, GetSelectedOrder} from "../utils/OrderAPI";
-import {DatePicker, Table} from "antd";
+import {DatePicker, Pagination, Table} from "antd";
 import title from "../img/E-BookStore.png";
 import Header from "../components/header";
 
@@ -30,26 +30,42 @@ const columns = [
     },
 ];
 
-const OrderManagement=()=>{
+const OrderManagement = () => {
     const [orderList, setOrderList] = useState([]);
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [curLength, setLength] = useState(0)
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+
     useEffect(() => {
         const fetchOrder = async () => {
-            const result = await GetAllOrder();
+            const formData = new FormData();
+            formData.append("index", 0);
+            formData.append("size", 10);
+            const result = await GetAllOrder(formData);
             console.log(result)
             if (result.code === 1) {
-                for (let i = 0; i < result.data.length; i++) {
-                    result.data[i].orderTime = result.data[i].orderTime.replace("T", " ")
+                for (let i = 0; i < result.data.content.length; i++) {
+                    result.data.content[i].orderTime = result.data.content[i].orderTime.replace("T", " ")
                 }
-                setOrderList(result.data);
+                setOrderList(result.data.content);
+                setLength(result.data.totalElements - 1 || 0);
             } else {
                 alert(result.msg)
             }
         }
         fetchOrder().then()
     }, []);
+
+    useEffect(() => {
+        getSearchlist(currentPage-1).then()
+    }, [currentPage]);
 
     const handleDateSelector = (dates, dateStrings) => {
         if (dates) {
@@ -59,19 +75,26 @@ const OrderManagement=()=>{
             console.log('Clear');
         }
     }
-
+const getSearchlist=async(index)=>{
+    const formdata = new FormData();
+    const title = document.getElementById("search").value;
+    formdata.append("start", startDate);
+    formdata.append("end", endDate);
+    formdata.append("title", title);
+    formdata.append("index",index);
+    formdata.append("size", 10);
+    const result = await GetAllSelectedOrder(formdata);
+    console.log(result)
+    for (let i = 0; i < result.data.content.length; i++) {
+        result.data.content[i].orderTime = result.data.content[i].orderTime.replace("T", " ")
+    }
+    console.log(result);
+    setOrderList(result.data.content);
+    setLength(result.data.totalElements - 1 || 0);
+}
     const handleSearch = async (e) => {
-        const formdata = new FormData();
-        const title = document.getElementById("search").value;
-        formdata.append("start", startDate);
-        formdata.append("end", endDate);
-        formdata.append("title", title);
-        const result = await GetAllSelectedOrder(formdata);
-        for (let i = 0; i < result.data.length; i++) {
-            result.data[i].orderTime = result.data[i].orderTime.replace("T", " ")
-        }
-        console.log(result);
-        setOrderList(result.data);
+        setCurrentPage(1);
+        await getSearchlist(0);
     }
 
     const showOrder = () => {
@@ -81,8 +104,8 @@ const OrderManagement=()=>{
             return <>
                 {orderList.map((item, index) => <>
                     <div className="px-10 py-3 flex justify-between">
-                        <div className="text-2xl">Order {index + 1}</div>
-                        <div >
+                        <div className="text-2xl">Order {(currentPage - 1) * 10 + index + 1}</div>
+                        <div>
                             <div class="mx-3">用户userId：{item.userId}</div>
                             <div class="mx-3">下单时间：{item.orderTime}</div>
                         </div>
@@ -107,9 +130,16 @@ const OrderManagement=()=>{
                                )
                            }}/>
                 </>)}
+                <div className="flex justify-center mt-4">
+                    <Pagination
+                        current={currentPage}
+                        total={curLength}
+                        onChange={handlePageChange}
+                    />
+                </div>
+
             </>
         }
-
     }
     return <>
         <html lang="en">

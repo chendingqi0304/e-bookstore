@@ -14,7 +14,7 @@ const MainPage = () => {
         async function fetchBooks() {
             const result = await BookList();
             if (result.code === 1) {
-                setBookList(result.data);
+                setBookList(result.data.content);
             } else {
                 alert(result.msg);
             }

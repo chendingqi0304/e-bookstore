@@ -2,9 +2,10 @@ import title from "../img/E-BookStore.png";
 import Header from "../components/header";
 import React, {useEffect, useState} from "react";
 
-import {Table} from 'antd';
+import {Pagination, Table} from 'antd';
 import {DatePicker} from 'antd';
 import {GetOrder, GetSelectedOrder} from "../utils/OrderAPI";
+import {formatProdErrorMessage} from "@reduxjs/toolkit";
 
 const {RangePicker} = DatePicker;
 
@@ -37,22 +38,35 @@ const Myorder = () => {
     const [orderList, setOrderList] = useState([]);
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [curLength, setLength] = useState(0)
 
-    useEffect(() => {
-        const fetchOrder = async () => {
-            const result = await GetOrder();
-            console.log(result)
-            if (result.code === 1) {
-                for (let i = 0; i < result.data.length; i++) {
-                    result.data[i].orderTime = result.data[i].orderTime.replace("T", " ")
-                }
-                setOrderList(result.data);
-            } else {
-                alert(result.msg)
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+    const fetchOrder = async (index) => {
+        const formData = new FormData();
+        formData.append("index", index);
+        formData.append("size", 10);
+        const result = await GetOrder(formData);
+        console.log(result)
+        if (result.code === 1) {
+            for (let i = 0; i < result.data.content.length; i++) {
+                result.data.content[i].orderTime = result.data.content[i].orderTime.replace("T", " ")
             }
+            setOrderList(result.data.content);
+            setLength(result.data.totalElements - 1 || 0);
+        } else {
+            alert(result.msg)
         }
-        fetchOrder().then()
-    }, []);
+    }
+    // useEffect(() => {
+    //
+    //     fetchOrder(0).then()
+    // }, []);
+    useEffect(() => {
+        SearchOrder(currentPage-1).then();
+    }, [currentPage]);
 
     const handleDateSelector = (dates, dateStrings) => {
         if (dates) {
@@ -62,19 +76,25 @@ const Myorder = () => {
             console.log('Clear');
         }
     }
+    const SearchOrder = async (index) => {
 
-    const handleSearch = async (e) => {
         const formdata = new FormData();
         const title = document.getElementById("search").value;
         formdata.append("start", startDate);
         formdata.append("end", endDate);
         formdata.append("title", title);
+        formdata.append("index", index);
+        formdata.append("size", 10);
         const result = await GetSelectedOrder(formdata);
-        for (let i = 0; i < result.data.length; i++) {
-            result.data[i].orderTime = result.data[i].orderTime.replace("T", " ")
+        for (let i = 0; i < result.data.content.length; i++) {
+            result.data.content[i].orderTime = result.data.content[i].orderTime.replace("T", " ")
         }
         console.log(result);
-        setOrderList(result.data);
+        setOrderList(result.data.content);
+        setLength(result.data.totalElements - 1 || 0);
+    }
+    const handleSearch = async (e) => {
+        await SearchOrder(0);
     }
 
     const showOrder = () => {
@@ -84,7 +104,7 @@ const Myorder = () => {
             return <>
                 {orderList.map((item, index) => <>
                     <div className="px-10 py-3 flex justify-between">
-                        <div className="text-2xl">Order {index + 1}</div>
+                        <div className="text-2xl">Order {currentPage*10-10+index + 1}</div>
                         <div>下单时间：{item.orderTime}</div>
                     </div>
 
@@ -106,6 +126,13 @@ const Myorder = () => {
                                )
                            }}/>
                 </>)}
+                <div className="flex justify-center my-4 ">
+                    <Pagination
+                        current={currentPage}
+                        total={curLength}
+                        onChange={handlePageChange}
+                    />
+                </div>
             </>
         }
 

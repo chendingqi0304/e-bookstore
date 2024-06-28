@@ -4,6 +4,8 @@ import org.example.ebookstore.dao.BookDao;
 import org.example.ebookstore.entity.Book;
 import org.example.ebookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +16,13 @@ public class BookServiceImpl implements BookService{
     private BookDao bookDao;
 
     @Override
-    public List<Book> getAllBooks() {
-        return bookDao.selectAll();
+    public Page<Book> getAllBooks(Pageable pageable) {
+        return bookDao.selectAll(pageable);
     }
 
     @Override
-    public List<Book> getBooks(){
-        return bookDao.selectUndeleted();
+    public Page<Book> getBooks(Pageable pageable){
+        return bookDao.selectUndeleted(pageable);
     }
 
     @Override
@@ -43,7 +45,7 @@ public class BookServiceImpl implements BookService{
         bookDao.recoverBookByBookId(bookId);
     }
     @Override
-    public List<Book> searchByTitle(String title){
-        return bookDao.searchByTitle(title);
+    public Page<Book> searchByTitle(String title,Pageable pageable){
+        return bookDao.searchByTitle(title,pageable);
     }
 }

@@ -11,6 +11,9 @@ import org.example.ebookstore.service.CartService;
 import org.example.ebookstore.service.UserService;
 import org.example.ebookstore.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,12 +30,13 @@ public class CartController {
     private UserService userService;
 
     @PostMapping("/getCart")
-    public Result getCart() {
+    public Result getCart(@RequestParam("index")int pageIndex, @RequestParam("size")int pageSize) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         log.info("userId: {}", userId);
-        List<Cart>carts=cartService.getCarts(userId);
+        Pageable cartpage= PageRequest.of(pageIndex, pageSize);
+        Page<Cart> carts=cartService.getCarts(userId,cartpage);
         return Result.success(carts);
     }
     @PostMapping("/updateCartNum")

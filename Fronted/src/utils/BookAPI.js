@@ -1,8 +1,8 @@
 import {backendLink} from "./config";
 
-export const AllBookList = async () => {
+export const AllBookList = async (index) => {
     try {
-        const response = await fetch(backendLink + "/Allbooklist", {
+        const response = await fetch(backendLink + `/Allbooklist?index=${index}&size=${10}`, {
             method: "POST",
             credentials: "include",
         })
@@ -17,7 +17,7 @@ export const AllBookList = async () => {
 }
 export const BookList = async () => {
     try {
-        const response = await fetch(backendLink + "/booklist", {
+        const response = await fetch(backendLink + `/booklist?index=${0}&size=${6}`, {
             method: "POST",
             credentials: "include",
         })

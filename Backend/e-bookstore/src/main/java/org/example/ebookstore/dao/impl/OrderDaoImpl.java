@@ -1,21 +1,17 @@
 package org.example.ebookstore.dao.impl;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.example.ebookstore.dao.OrderDao;
 import org.example.ebookstore.entity.*;
 import org.example.ebookstore.repository.BookRepository;
-import org.example.ebookstore.repository.OrderItemRepository;
 import org.example.ebookstore.repository.OrderRepository;
 import org.example.ebookstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 @Repository
@@ -28,16 +24,14 @@ public class OrderDaoImpl implements OrderDao {
     private BookRepository bookRepository;
 
     @Override
-    public List<Order> selectByUserId(Integer userId) {
+    public Page<Order> selectByUserId(Integer userId,Pageable pageable) {
         Sort sort = Sort.by(Sort.Direction.DESC, "orderId");
-        return orderRepository.findByUserId(userId, sort);
+        return orderRepository.findByUserId(userId, pageable);
     }
 
     @Override
-    public List<Order> getAllOrders() {
-        List<Order> returnValue = orderRepository.findAll();
-        returnValue.sort(((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId())));
-        return returnValue;
+    public Page<Order> getAllOrders(Pageable pageable) {
+        return orderRepository.findAll(pageable);
     }
 
     @Override
@@ -62,7 +56,7 @@ public class OrderDaoImpl implements OrderDao {
             default:
                 return null;
         }
-        List<Order> orderIdList = orderRepository.getUserStatistics(userId, start, end);
+        List<Order> orderIdList = orderRepository.getOrdersByUserIdAndOrderTimeBetween(userId, start, end);
         List<OrderItem> orderStatistics = new ArrayList<>();
         Integer bookCount = 0;
         Integer moneyCount = 0;
@@ -116,7 +110,7 @@ public class OrderDaoImpl implements OrderDao {
             default:
                 return null;
         }
-        List<Order> orderList = orderRepository.getOrderList(start, end);
+        List<Order> orderList = orderRepository.getOrdersByOrderTimeBetween(start, end);
         List<UserListItem> userListItems = new ArrayList<>();
         for (Order order : orderList) {
             boolean found = false;
@@ -161,7 +155,7 @@ public class OrderDaoImpl implements OrderDao {
             default:
                 return null;
         }
-        List<Order> orderIdList = orderRepository.getOrderList(start, end);
+        List<Order> orderIdList = orderRepository.getOrdersByOrderTimeBetween(start, end);
         List<OrderItem> orderStatistics = new ArrayList<>();
         for (Order order : orderIdList) {
             for (OrderItem orderItem : order.getOrderItems()) {
@@ -191,11 +185,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title) {
+    public Page<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title,Pageable pageable) {
         if (title == "") {
-            return orderRepository.getSelectedOrders(userId, startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+            return orderRepository.getOrdersByUserIdAndOrderTimeBetween(userId, startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59),pageable);
         } else {
-            List<Order> orderList = orderRepository.getSelectedOrders(userId, startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+            List<Order> orderList = orderRepository.getOrdersByUserIdAndOrderTimeBetween(userId, startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
             List<Book> bookList = bookRepository.findByTitleContaining(title);
             List<Order> returnValue = new ArrayList<>();
             for (Order order : orderList) {
@@ -216,16 +210,21 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
             returnValue.sort((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId()));
-            return returnValue;
+            int start = pageable.getPageNumber() * pageable.getPageSize();
+            int end = Math.min(start + pageable.getPageSize(), returnValue.size());
+            return new PageImpl<>(returnValue.subList(start, end), pageable, returnValue.size());
         }
     }
 
     @Override
-    public List<Order> getAllSelectedOrders(LocalDate startTime, LocalDate endTime, String title) {
+    public Page<Order> getAllSelectedOrders(LocalDate startTime, LocalDate endTime, String title,Pageable pageable) {
         if (title == "") {
-            return orderRepository.getAllSelectedOrders(startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+            List<Order> list=orderRepository.getOrdersByOrderTimeBetween(startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+            int start = pageable.getPageNumber() * pageable.getPageSize();
+            int end = Math.min(start + pageable.getPageSize(), list.size());
+            return new PageImpl<>(list.subList(start, end), pageable, list.size());
         } else {
-            List<Order> orderList = orderRepository.getAllSelectedOrders(startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
+            List<Order> orderList = orderRepository.getOrdersByOrderTimeBetween(startTime.atTime(0, 0, 0), endTime.atTime(23, 59, 59));
             List<Book> bookList = bookRepository.findByTitleContaining(title);
             List<Order> returnValue = new ArrayList<>();
             for (Order order : orderList) {
@@ -246,14 +245,16 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
             returnValue.sort((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId()));
-            return returnValue;
+            int start = pageable.getPageNumber() * pageable.getPageSize();
+            int end = Math.min(start + pageable.getPageSize(), returnValue.size());
+            return new PageImpl<Order>(returnValue.subList(start, end), pageable, returnValue.size());
         }
     }
 
     @Override
-    public List<Order> getOrdersByTitle(Integer userId, String title) {
+    public Page<Order> getOrdersByTitle(Integer userId, String title,Pageable pageable) {
         Sort sort = Sort.by(Sort.Direction.DESC, "orderId");
-        List<Order> orderList = orderRepository.findByUserId(userId, sort);
+        List<Order> orderList = orderRepository.findByUserId(userId);
         List<Book> bookList = bookRepository.findByTitleContaining(title);
         List<Order> returnValue = new ArrayList<>();
         for (Order order : orderList) {
@@ -274,11 +275,13 @@ public class OrderDaoImpl implements OrderDao {
             }
         }
         returnValue.sort((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId()));
-        return returnValue;
+        int start = pageable.getPageNumber() * pageable.getPageSize();
+        int end = Math.min(start + pageable.getPageSize(), returnValue.size());
+        return new PageImpl<>(returnValue.subList(start, end), pageable, returnValue.size());
     }
 
     @Override
-    public List<Order> getAllOrdersByTitle(String title) {
+    public Page<Order> getAllOrdersByTitle(String title,Pageable pageable) {
         List<Order> orderList = orderRepository.findAll();
         List<Book> bookList = bookRepository.findByTitleContaining(title);
         List<Order> returnValue = new ArrayList<>();
@@ -300,6 +303,8 @@ public class OrderDaoImpl implements OrderDao {
             }
         }
         returnValue.sort((o1, o2) -> Integer.compare(o2.getOrderId(), o1.getOrderId()));
-        return returnValue;
+        int start = pageable.getPageNumber() * pageable.getPageSize();
+        int end = Math.min(start + pageable.getPageSize(), returnValue.size());
+        return new PageImpl<>(returnValue.subList(start, end), pageable, returnValue.size());
     }
 }

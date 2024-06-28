@@ -9,6 +9,8 @@ import org.example.ebookstore.service.OrderService;
 import org.example.ebookstore.service.UserService;
 import org.example.ebookstore.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -28,15 +30,16 @@ public class OrderController {
     private UserService userService;
 
     @PostMapping("/getOrder")
-    public Result getOrder() {
+    public Result getOrder(@RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
-        return Result.success(orderService.getOrders(userId));
+        Pageable pageable = PageRequest.of(pageIndex, pageSize);
+        return Result.success(orderService.getOrders(userId, pageable));
     }
 
     @PostMapping("/getAllOrder")
-    public Result getAllOrder() {
+    public Result getAllOrder(@RequestParam("index") Integer pageIndex, @RequestParam("size") Integer pageSize) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
@@ -44,27 +47,29 @@ public class OrderController {
         if (user == null || user.getType() != 1) {
             return Result.error("无此用户或无权限");
         } else {
-            return Result.success(orderService.getAllOrders());
+            Pageable pageable = PageRequest.of(pageIndex, pageSize);
+            return Result.success(orderService.getAllOrders(pageable));
         }
     }
 
     @PostMapping("/getSelectedOrder")
-    public Result getSelectedOrder(@RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("title") String title) {
+    public Result getSelectedOrder(@RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("title") String title, @RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         log.info("{},{}", start, end);
+        Pageable pageable = PageRequest.of(pageIndex, pageSize);
         if (!Objects.equals(start, "") && !Objects.equals(end, "")) {
             LocalDate startDate = LocalDate.parse(start);
             LocalDate endDate = LocalDate.parse(end);
-            return Result.success(orderService.getSelectedOrders(userId, startDate, endDate, title));
+            return Result.success(orderService.getSelectedOrders(userId, startDate, endDate, title, pageable));
         } else {
-            return Result.success(orderService.getOrdersByTitle(userId, title));
+            return Result.success(orderService.getOrdersByTitle(userId, title, pageable));
         }
     }
 
     @PostMapping("/getAllSelectedOrder")
-    public Result getAllSelectedOrder(@RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("title") String title) {
+    public Result getAllSelectedOrder(@RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("title") String title, @RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
@@ -72,12 +77,13 @@ public class OrderController {
         if (user == null || user.getType() != 1) {
             return Result.error("无此用户或无权限");
         } else {
+            Pageable pageable = PageRequest.of(pageIndex, pageSize);
             if (!Objects.equals(start, "") && !Objects.equals(end, "")) {
                 LocalDate startDate = LocalDate.parse(start);
                 LocalDate endDate = LocalDate.parse(end);
-                return Result.success(orderService.getAllSelectedOrders(startDate, endDate, title));
+                return Result.success(orderService.getAllSelectedOrders(startDate, endDate, title, pageable));
             } else {
-                return Result.success(orderService.getAllOrdersByTitle(title));
+                return Result.success(orderService.getAllOrdersByTitle(title, pageable));
             }
         }
     }

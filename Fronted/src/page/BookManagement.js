@@ -1,7 +1,7 @@
 import Header from "../components/header";
 import React, {useEffect} from "react";
 import {useState} from "react";
-import {InputNumber, Modal, Space, Table, Typography} from "antd";
+import {InputNumber, Modal, Pagination, Space, Table, Typography} from "antd";
 import {AddBook, AllBookList, DeleteBook, EditBook, RecoverBook, SearchByTitle} from "../utils/BookAPI";
 
 const {Paragraph} = Typography;
@@ -18,6 +18,10 @@ const BookManagement = () => {
     const [BookAuthor, setBookAuthor] = React.useState("");
     const [BookRest, setBookRest] = React.useState("");
     const [BookISBN, setBookISBN] = React.useState("");
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [curLength, setLength] = useState(0)
+
     const handlePicture = (e) => {
         setPicture(e.target.files[0]);
     }
@@ -161,9 +165,9 @@ const BookManagement = () => {
 
     useEffect(() => {
         const getBookList = async () => {
-            const result = await AllBookList();
+            const result = await AllBookList(0);
             if (result.code === 1) {
-                setBookList(result.data);
+                setBookList(result.data.content);
                 setLoading(false);
             } else {
                 alert(result.msg)
@@ -171,6 +175,52 @@ const BookManagement = () => {
         }
         getBookList().then();
     }, [])
+
+    useEffect(() => {
+        const getBookList = async () => {
+            const result = await AllBookList(currentPage - 1);
+            if (result.code === 1) {
+                const list = [];
+                result.data.content.map((book) => {
+                    if (!book.deleted) {
+                        list.push(book);
+                    }
+                })
+                setBookList(list);
+                setLoading(false);
+                setLength(result.data.totalElements - 1 || 0);
+            } else {
+                alert(result.msg)
+            }
+        }
+        const title = document.getElementById("search").value
+        if (title.value === "") {
+            getBookList().then();
+        } else {
+            getSearchBookList(currentPage-1).then();
+        }
+    }, [currentPage])
+
+    const getSearchBookList = async (index) => {
+        setLoading(true);
+        const title = document.getElementById("search").value
+        if (title === null) {
+            alert("请输入书名")
+            return
+        }
+        const formData = new FormData()
+        formData.append("title", title)
+        formData.append("index", index)
+        formData.append("size", 10)
+        const result = await SearchByTitle(formData)
+        if (result.code === 1) {
+            setBookList(result.data.content);
+            setLength(result.data.totalElements - 1 || 0);
+        } else {
+            alert(result.msg)
+        }
+        setLoading(false)
+    }
 
     const BookSubmit = async () => {
         var bookname = document.getElementById("bookname").value;
@@ -298,30 +348,25 @@ const BookManagement = () => {
     }
 
     const handleSearch = async () => {
-        setLoading(true);
-        const title = document.getElementById("search").value
-        if (title === null) {
-            alert("请输入书名")
-            return
-        }
-        const formData = new FormData()
-        formData.append("title", title)
-        const result = await SearchByTitle(formData)
-        if (result.code === 1) {
-            setBookList(result.data);
-        } else {
-            alert(result.msg)
-        }
-        setLoading(false)
+        await getSearchBookList(0);
     }
 const showList=(e)=>{
     if (loading) return (<></>)
     else return (<>
-        <Table className="px-10" columns={columns} dataSource={bookList}/>
+        <Table className="px-10" columns={columns} dataSource={bookList} pagination={false}/>
+        <div className="flex justify-center mt-4">
+            <Pagination
+                current={currentPage}
+                total={curLength}
+                onChange={handlePageChange}
+            />
+        </div>
     </>)
 }
 
-
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
     return <>
         <html lang="en">

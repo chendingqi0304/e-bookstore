@@ -5,6 +5,8 @@ import org.example.ebookstore.entity.Book;
 import org.example.ebookstore.entity.Cart;
 import org.example.ebookstore.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,16 +18,10 @@ public class CartDaoImpl implements CartDao {
     @Autowired
     private CartRepository cartRepository;
     @Override
-    public List<Cart> selectByUserId(Integer userId){
-        List<Cart> carts = cartRepository.findByUserId(userId);
-        List<Cart> returnValue = new ArrayList<Cart>();
-        for (Cart cart : carts) {
-            if(!cart.getBook().getDeleted()){
-                returnValue.add(cart);
-            }
-        }
-        return returnValue;
+    public Page<Cart> selectByUserId(Integer userId, Pageable pageable){
+        return cartRepository.findByUserIdAndBook_Deleted(userId,false,pageable);
     }
+
     @Override
     public Cart selectBycartId(Integer cartId){
         return cartRepository.findByCartId(cartId);

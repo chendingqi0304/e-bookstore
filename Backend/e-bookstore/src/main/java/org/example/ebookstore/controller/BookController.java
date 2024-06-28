@@ -11,6 +11,8 @@ import org.example.ebookstore.service.BookService;
 import org.example.ebookstore.service.UserService;
 import org.example.ebookstore.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,21 +28,23 @@ public class BookController {
     private UserService userService;
 
     @PostMapping("/Allbooklist")
-    public Result getAllBooklist() {
+    public Result getAllBooklist(@RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         log.info("userId:{} get booklist", userId);
-        return Result.success(bookService.getAllBooks());
+        Pageable bookpage= PageRequest.of(pageIndex,pageSize);
+        return Result.success(bookService.getAllBooks(bookpage));
     }
 
     @PostMapping("/booklist")
-    public Result getBooklist() {
+    public Result getBooklist(@RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
         HttpSession session = SessionUtils.getSession();
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         log.info("userId:{} get booklist", userId);
-        return Result.success(bookService.getBooks());
+        Pageable bookpage= PageRequest.of(pageIndex,pageSize);
+        return Result.success(bookService.getBooks(bookpage));
     }
 
     @PostMapping("/addbook")
@@ -151,7 +155,9 @@ public class BookController {
         }
     }
     @PostMapping("/searchByTitle")
-    public Result searchByTitle(@RequestParam("title") String title) {
-        return Result.success(bookService.searchByTitle(title));
+    public Result searchByTitle(@RequestParam("title") String title,@RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
+
+        Pageable bookpage= PageRequest.of(pageIndex,pageSize);
+        return Result.success(bookService.searchByTitle(title,bookpage));
     }
 }

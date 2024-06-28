@@ -1,10 +1,11 @@
 import {backendLink} from "./config";
 
-export const GetOrder = async () => {
+export const GetOrder = async (formdata) => {
     try {
         const response = await fetch(backendLink + "/getOrder", {
             method: "POST",
-            credentials: "include"
+            credentials: "include",
+            body:formdata,
         })
         if (response.ok) {
             return await response.json();
@@ -98,11 +99,13 @@ export const GetSelectedOrder = async (formdata) => {
     }
 }
 
-export const GetAllOrder=async ()=>{
+export const GetAllOrder=async (formdata)=>{
     try {
         const response = await fetch(backendLink + "/getAllOrder", {
             method: "POST",
-            credentials: "include"
+            body:formdata,
+            credentials: "include",
+
         })
         if (response.ok) {
             return await response.json();

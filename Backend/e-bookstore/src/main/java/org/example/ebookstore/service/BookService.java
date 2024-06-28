@@ -1,11 +1,13 @@
 package org.example.ebookstore.service;
 
 import org.example.ebookstore.entity.Book;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface BookService {
-    List<Book> getAllBooks();
+    Page<Book> getAllBooks(Pageable pageable);
 
     void addBook(Book book);
 
@@ -13,9 +15,9 @@ public interface BookService {
 
     void deleteBookByBookId(Integer bookId);
 
-    List<Book> getBooks();
+    Page<Book> getBooks(Pageable pageable);
 
     void recoverBookByBookId(Integer bookId);
 
-    List<Book> searchByTitle(String title);
+    Page<Book> searchByTitle(String title,Pageable pageable);
 }

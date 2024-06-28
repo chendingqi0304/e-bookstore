@@ -1,7 +1,7 @@
 import Header from "../components/header";
 import React, {useEffect} from "react";
 import {useState} from "react";
-import {InputNumber, Modal, Space, Table, Typography} from "antd";
+import {InputNumber, Modal, Pagination, Space, Table, Typography} from "antd";
 import {AddBook, AllBookList, DeleteBook, EditBook, RecoverBook, SearchByTitle} from "../utils/BookAPI";
 
 const {Paragraph} = Typography;
@@ -12,13 +12,18 @@ const AllBook = () => {
 
     const [bookList, setBookList] = React.useState([]);
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [curLength, setLength] = useState(0)
 
     const columns = [
-        {title: "购买链接",
-        dataIndex: "bookId",
-        key: "bookId",
-        render: (text) =>
-            <a href={`/book/${text}`}><div class="min-w-16 text-blue-400 underline">购买链接</div></a>
+        {
+            title: "购买链接",
+            dataIndex: "bookId",
+            key: "bookId",
+            render: (text) =>
+                <a href={`/book/${text}`}>
+                    <div class="min-w-16 text-blue-400 underline">购买链接</div>
+                </a>
 
         },
         {
@@ -96,16 +101,17 @@ const AllBook = () => {
 
     useEffect(() => {
         const getBookList = async () => {
-            const result = await AllBookList();
+            const result = await AllBookList(0);
             if (result.code === 1) {
-                const list=[];
-                result.data.map((book) => {
-                    if (!book.deleted){
+                const list = [];
+                result.data.content.map((book) => {
+                    if (!book.deleted) {
                         list.push(book);
                     }
                 })
                 setBookList(list);
                 setLoading(false);
+                setLength(result.data.totalElements - 1 || 0);
             } else {
                 alert(result.msg)
             }
@@ -113,10 +119,36 @@ const AllBook = () => {
         getBookList().then();
     }, [])
 
+    useEffect(() => {
+        const getBookList = async () => {
+            const result = await AllBookList(currentPage - 1);
+            if (result.code === 1) {
+                const list = [];
+                result.data.content.map((book) => {
+                    if (!book.deleted) {
+                        list.push(book);
+                    }
+                })
+                setBookList(list);
+                setLoading(false);
+                setLength(result.data.totalElements - 1 || 0);
+            } else {
+                alert(result.msg)
+            }
+        }
+        const title = document.getElementById("search").value
+        if (title.value === "") {
+            getBookList().then();
+        } else {
+            getSearchBookList(currentPage-1).then();
+        }
+    }, [currentPage])
 
 
-
-    const handleSearch = async () => {
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+    const getSearchBookList = async (index) => {
         setLoading(true);
         const title = document.getElementById("search").value
         if (title === null) {
@@ -125,24 +157,37 @@ const AllBook = () => {
         }
         const formData = new FormData()
         formData.append("title", title)
+        formData.append("index", index);
+        formData.append("size", 10);
         const result = await SearchByTitle(formData)
         if (result.code === 1) {
-            const list=[];
-            result.data.map((book) => {
-                if (!book.deleted){
+            const list = [];
+            result.data.content.map((book) => {
+                if (!book.deleted) {
                     list.push(book);
                 }
             })
             setBookList(list);
+            setLength(result.data.totalElements - 1 || 0);
         } else {
             alert(result.msg)
         }
         setLoading(false)
     }
+    const handleSearch = async () => {
+        await getSearchBookList(0);
+    }
     const showList = (e) => {
         if (loading) return (<></>)
         else return (<>
-            <Table className="px-10" columns={columns} dataSource={bookList}/>
+            <Table className="px-10" columns={columns} dataSource={bookList} pagination={false}/>
+            <div className="flex justify-center mt-4">
+                <Pagination
+                    current={currentPage}
+                    total={curLength}
+                    onChange={handlePageChange}
+                />
+            </div>
         </>)
     }
 

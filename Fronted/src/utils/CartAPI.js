@@ -1,10 +1,11 @@
 import {backendLink} from "./config";
 
-export const GetCart = async () => {
+export const GetCart = async (formdata) => {
     try {
         const response = await fetch(backendLink + "/getCart", {
             method: "POST",
-            credentials: "include"
+            credentials: "include",
+            body:formdata,
         })
         if (response.ok) {
             return await response.json();

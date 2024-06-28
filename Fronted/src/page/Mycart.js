@@ -1,7 +1,7 @@
 import title from "../img/E-BookStore.png";
 import Header from "../components/header";
 import React, {useEffect, useState} from "react";
-import {Modal, Space, Table} from 'antd';
+import {Modal, Pagination, Space, Table} from 'antd';
 import {Checkbox, Col} from 'antd';
 import {InputNumber} from 'antd';
 import {useSelector} from "react-redux";
@@ -12,6 +12,15 @@ const Mycart = () => {
     const account = JSON.parse((useSelector((state) => state.account)).accountInfo);
     const [cartList, setCartList] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [curLength, setLength] = useState(0)
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
 
     const onSelectChange = (newSelectedRowKeys) => {
         //console.log('selectedRowKeys changed: ', newSelectedRowKeys);
@@ -79,16 +88,7 @@ const Mycart = () => {
             render: (sum) => (
                 <div>￥{(sum / 100).toFixed(2)}</div>
             )
-        },
-        {
-            title: '操作',
-            key: 'action',
-            render: (_, record) => (
-                <Space size="middle">
-                    <a>Delete</a>
-                </Space>
-            ),
-        },
+        }
     ];
 
     const handleBuy = async () => {
@@ -107,27 +107,56 @@ const Mycart = () => {
         await BuyByCartId(formdata)
         window.location.href = "/Main"
     }
+    const fetchCartList = async (index) => {
+        setLoading(true)
+        const formdata = new FormData;
+        formdata.append("index", index);
+        formdata.append("size", 10)
+        const result = await GetCart(formdata);
+        console.log(result);
+        if (result.code === 1
+        ) {
+            for (let i = 0; i < result.data.content.length; i++) {
+                result.data.content[i].key = i;
+                result.data.content[i].sum = result.data.content[i].book.price * result.data.content[i].number;
+                result.data.content[i].price = result.data.content[i].book.price;
+                result.data.content[i].title = result.data.content[i].book.title;
+            }
+            setCartList(result.data.content);
+            setLength(result.data.totalElements - 1 || 0);
+            setSelectedRowKeys([])
+            setLoading(false)
+        } else {
+            alert(result.msg)
+        }
+    }
 
     useEffect(() => {
-        async function fetchCartList() {
-            const result = await GetCart();
-            if (result.code === 1) {
-                for (let i = 0; i < result.data.length; i++) {
-                    result.data[i].key = i;
-                    result.data[i].sum = result.data[i].book.price * result.data[i].number;
-                    result.data[i].price = result.data[i].book.price;
-                    result.data[i].title = result.data[i].book.title;
-                    console.log(i, result.data[i].book)
-                }
-                setCartList(result.data);
-            } else {
-                alert(result.msg)
-            }
-        }
-
-        fetchCartList().then(r => {
+        fetchCartList(0).then(r => {
         });
     }, []);
+
+    useEffect(() => {
+        fetchCartList(currentPage - 1).then(r => {
+        });
+    }, [currentPage]);
+
+    const showList = () => {
+        if (loading) {
+            return <></>
+        } else {
+            return (<><Table className="px-10" rowSelection={rowSelection} columns={columns} dataSource={cartList}
+                             pagination={false}/>
+                <div className="flex justify-center my-4 ">
+                    <Pagination
+                        current={currentPage}
+                        total={curLength}
+                        onChange={handlePageChange}
+                    />
+                </div>
+            </>)
+        }
+    }
 
     return <>
         <html lang="en">
@@ -143,7 +172,7 @@ const Mycart = () => {
         <div className="text-3xl pl-20 py-5">
             我的购物车
         </div>
-        <Table className="px-10" rowSelection={rowSelection} columns={columns} dataSource={cartList}/>
+        {showList()}
         <div className="flex items-center justify-center">
             <button onClick={handleBuy}
                     className="focus:outline-none text-sm w-auto py-3 rounded-md font-semibold text-white bg-blue-500 ring-4 flex p-4 h-16 justify-center items-center text-center gap-5"
