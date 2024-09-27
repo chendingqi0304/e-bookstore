@@ -5,7 +5,7 @@ export const GetOrder = async (formdata) => {
         const response = await fetch(backendLink + "/getOrder", {
             method: "POST",
             credentials: "include",
-            body:formdata,
+            body: formdata,
         })
         if (response.ok) {
             return await response.json();
@@ -25,7 +25,7 @@ export const BuyByCartId = async (formdata) => {
             credentials: "include"
         })
         if (response.ok) {
-
+            return await response.json();
         } else {
             alert("提交订单失败");
         }
@@ -99,11 +99,11 @@ export const GetSelectedOrder = async (formdata) => {
     }
 }
 
-export const GetAllOrder=async (formdata)=>{
+export const GetAllOrder = async (formdata) => {
     try {
         const response = await fetch(backendLink + "/getAllOrder", {
             method: "POST",
-            body:formdata,
+            body: formdata,
             credentials: "include",
 
         })
@@ -117,7 +117,7 @@ export const GetAllOrder=async (formdata)=>{
     }
 }
 
-export const GetAllSelectedOrder=async(formdata)=>{
+export const GetAllSelectedOrder = async (formdata) => {
     try {
         const response = await fetch(backendLink + "/getAllSelectedOrder", {
             method: "POST",

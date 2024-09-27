@@ -94,9 +94,11 @@ public class OrderController {
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         log.info("BuybyCartIds:{}，userId:{}", cartIds, userId);
-        orderService.addOrderByCartIds(cartIds, userId);
-
-        return Result.success();
+        if(orderService.addOrderByCartIds(cartIds, userId)){
+            return Result.success();
+        }else {
+            return Result.error("库存不足");
+        }
     }
 
     @PostMapping("/BuybyBookId")
@@ -111,6 +113,9 @@ public class OrderController {
         Book book = bookService.getBookById(bookId);
         if (book == null) {
             return Result.error("未找到书籍");
+        }
+        if(book.getRest()<number){
+            return Result.error("库存不足");
         }
         orderService.addOrderByBookId(bookId, userId, number);
         return Result.success();

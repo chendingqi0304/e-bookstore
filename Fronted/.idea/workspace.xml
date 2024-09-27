@@ -5,34 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e28a3d3-b5d0-4886-98db-10a5abf03b24" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/BookDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/CartDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/CartDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/CartDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/CartDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/CartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/CartRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/CartService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/BookServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/CartServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dist/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/output.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/AllBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/AllBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/BookManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/BookManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/MainPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/Mycart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Mycart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Myorder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Myorder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/OrderManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/OrderManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/BookAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BookAPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/CartAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/CartAPI.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/OrderAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/OrderAPI.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +81,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.19072.23" />
       </set>
     </attachedChunks>
   </component>
@@ -207,6 +185,13 @@
       <workItem from="1718442079634" duration="100000" />
       <workItem from="1719490104784" duration="14013000" />
       <workItem from="1719548372496" duration="3681000" />
+      <workItem from="1719568023746" duration="659000" />
+      <workItem from="1719572492215" duration="1221000" />
+      <workItem from="1719655552595" duration="1321000" />
+      <workItem from="1727229695935" duration="28000" />
+      <workItem from="1727229753078" duration="954000" />
+      <workItem from="1727237151308" duration="40000" />
+      <workItem from="1727237197503" duration="6000" />
     </task>
     <servers />
   </component>

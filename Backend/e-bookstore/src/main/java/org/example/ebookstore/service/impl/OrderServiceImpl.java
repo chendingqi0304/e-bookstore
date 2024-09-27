@@ -29,8 +29,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderItemDao orderItemDao;
 
     @Override
-    public Page<Order> getOrders(Integer userId,Pageable pageable) {
-        return orderDao.selectByUserId(userId,pageable);
+    public Page<Order> getOrders(Integer userId, Pageable pageable) {
+        return orderDao.selectByUserId(userId, pageable);
     }
 
     @Override
@@ -57,12 +57,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void addOrderByCartIds(List<Integer> cartIds, Integer userId) {
+    public boolean addOrderByCartIds(List<Integer> cartIds, Integer userId) {
         Order order = new Order();
         order.setUserId(userId);
         order.setOrderTime(LocalDateTime.now());
         orderDao.insertOrder(order);
-
+        for (Integer cartId : cartIds) {
+            Cart cart = cartDao.selectBycartId(cartId);
+            Book book = cart.getBook();
+            if(book.getRest()<cart.getNumber()){
+                return false;
+            }
+        }
         for (Integer cartId : cartIds) {
             Cart cart = cartDao.selectBycartId(cartId);
             Book book = cart.getBook();
@@ -80,6 +86,7 @@ public class OrderServiceImpl implements OrderService {
             orderItemDao.addOrderItem(orderItem);
             bookDao.insert(book);
         }
+        return true;
     }
 
     @Override
@@ -93,22 +100,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Page<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title,Pageable pageable) {
-        return orderDao.getSelectedOrders(userId, startTime, endTime, title,pageable);
+    public Page<Order> getSelectedOrders(Integer userId, LocalDate startTime, LocalDate endTime, String title, Pageable pageable) {
+        return orderDao.getSelectedOrders(userId, startTime, endTime, title, pageable);
     }
 
     @Override
-    public Page<Order> getAllSelectedOrders(LocalDate startDate, LocalDate endDate, String title,Pageable pageable) {
-        return orderDao.getAllSelectedOrders(startDate, endDate, title,pageable);
+    public Page<Order> getAllSelectedOrders(LocalDate startDate, LocalDate endDate, String title, Pageable pageable) {
+        return orderDao.getAllSelectedOrders(startDate, endDate, title, pageable);
     }
 
     @Override
-    public Page<Order> getOrdersByTitle(Integer userId, String title,Pageable pageable) {
-        return orderDao.getOrdersByTitle(userId, title,pageable);
+    public Page<Order> getOrdersByTitle(Integer userId, String title, Pageable pageable) {
+        return orderDao.getOrdersByTitle(userId, title, pageable);
     }
 
     @Override
-    public Page<Order> getAllOrdersByTitle(String title,Pageable pageable) {
-        return orderDao.getAllOrdersByTitle(title,pageable);
+    public Page<Order> getAllOrdersByTitle(String title, Pageable pageable) {
+        return orderDao.getAllOrdersByTitle(title, pageable);
     }
 }

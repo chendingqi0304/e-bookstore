@@ -14,7 +14,7 @@ public interface OrderService {
 
     void addOrderByBookId(Integer bookId, Integer userId, Integer number);
 
-    void addOrderByCartIds(List<Integer> cartIds, Integer userId);
+    boolean addOrderByCartIds(List<Integer> cartIds, Integer userId);
 
     List<UserListItem> getUserList(Integer time);
 

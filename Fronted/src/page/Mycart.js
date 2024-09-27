@@ -104,8 +104,13 @@ const Mycart = () => {
             })
         }
         formdata.append("cartIdList", selectedCartId)
-        await BuyByCartId(formdata)
-        window.location.href = "/Main"
+        const response=await BuyByCartId(formdata)
+        if(response.code===1){
+            window.location.href = "/Main"
+        }else {
+            alert(response.msg);
+        }
+
     }
     const fetchCartList = async (index) => {
         setLoading(true)
