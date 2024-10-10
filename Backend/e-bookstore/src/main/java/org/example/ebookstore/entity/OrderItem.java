@@ -36,7 +36,7 @@ public class OrderItem {
     String name;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "order_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order;

@@ -20,3 +20,18 @@ export const Login=async (payload)=>{
         alert("请求发送失败");
     }
 }
+export const Logout=async ()=>{
+    try {
+        const response = await fetch(backendLink + "/logout", {
+            method: "POST",
+            credentials: "include",
+        });
+        if (response.ok) {
+            return await response.json();
+        }else {
+            throw new Error("请求失败")
+        }
+    }catch (error){
+        alert("请求发送失败");
+    }
+}

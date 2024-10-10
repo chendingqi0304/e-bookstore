@@ -10,6 +10,7 @@ import org.example.ebookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -27,6 +28,8 @@ public class OrderServiceImpl implements OrderService {
     private CartDao cartDao;
     @Autowired
     private OrderItemDao orderItemDao;
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
     public Page<Order> getOrders(Integer userId, Pageable pageable) {
@@ -39,24 +42,38 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public void addOrderByBookId(Integer bookId, Integer userId, Integer number) {
         Order order = new Order();
         order.setUserId(userId);
         order.setOrderTime(LocalDateTime.now());
         orderDao.insertOrder(order);
-
+        //int a=10/0;
         OrderItem orderItem = new OrderItem();
         Book book = bookDao.getBookById(bookId);
         book.setRest(book.getRest() - number);
+        if (book.getRest() < 0) {
+            kafkaTemplate.send("Order-Result", "Failed");
+            return;
+        }
         orderItem.setOrder(order);
         orderItem.setNumber(number);
         orderItem.setBookId(bookId);
         orderItem.setPrice(book.getPrice() * number);
         orderItem.setName(book.getTitle());
-        orderItemDao.addOrderItem(orderItem);
+        //int a=10/0;
+        try {
+            orderItemDao.addOrderItem(orderItem);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //int a=10/0;
+        kafkaTemplate.send("Order-Result", "Success");
     }
 
     @Override
+    @Transactional
     public boolean addOrderByCartIds(List<Integer> cartIds, Integer userId) {
         Order order = new Order();
         order.setUserId(userId);
@@ -65,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
         for (Integer cartId : cartIds) {
             Cart cart = cartDao.selectBycartId(cartId);
             Book book = cart.getBook();
-            if(book.getRest()<cart.getNumber()){
+            if (book.getRest() < cart.getNumber()) {
                 return false;
             }
         }

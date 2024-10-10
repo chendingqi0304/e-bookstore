@@ -1,7 +1,7 @@
 package org.example.ebookstore.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.ebookstore.entity.JavaMailUntil;
+import org.example.ebookstore.entity.JavaMailUtil;
 import org.example.ebookstore.entity.Result;
 import org.example.ebookstore.service.IdentifyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class IdentifyController {
             }
             String content="[E-BookStore]验证码："+stringcode+"。该验证码10分钟内有效，请于有效期内完成验证，验证码请勿透露给他人，若非本人操作请忽略此邮件。";
             /* 创建Session会话 */
-            Session session = JavaMailUntil.createSession();
+            Session session = JavaMailUtil.createSession();
             /* 创建邮件对象 */
             MimeMessage message = new MimeMessage(session);
             message.setSubject("E-BookStore验证码");

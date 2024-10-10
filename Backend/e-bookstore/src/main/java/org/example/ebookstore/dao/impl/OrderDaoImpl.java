@@ -1,5 +1,6 @@
 package org.example.ebookstore.dao.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.ebookstore.dao.OrderDao;
 import org.example.ebookstore.entity.*;
 import org.example.ebookstore.repository.BookRepository;
@@ -35,8 +36,10 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    @Transactional
     public void insertOrder(Order order) {
         orderRepository.save(order);
+        //int a=10/0;
     }
 
     @Override

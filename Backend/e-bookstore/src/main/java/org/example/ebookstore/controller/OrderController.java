@@ -11,6 +11,7 @@ import org.example.ebookstore.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -28,6 +29,8 @@ public class OrderController {
     private BookService bookService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @PostMapping("/getOrder")
     public Result getOrder(@RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
@@ -91,12 +94,10 @@ public class OrderController {
     @PostMapping("/BuybyCartIds")
     public Result BuyByCartIds(@RequestParam("cartIdList") List<Integer> cartIds) {
         HttpSession session = SessionUtils.getSession();
-        log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
-        log.info("BuybyCartIds:{}，userId:{}", cartIds, userId);
-        if(orderService.addOrderByCartIds(cartIds, userId)){
+        if (orderService.addOrderByCartIds(cartIds, userId)) {
             return Result.success();
-        }else {
+        } else {
             return Result.error("库存不足");
         }
     }
@@ -104,7 +105,6 @@ public class OrderController {
     @PostMapping("/BuybyBookId")
     public Result BuyByBookId(@RequestParam("bookId") Integer bookId, @RequestParam("number") Integer number) {
         HttpSession session = SessionUtils.getSession();
-        log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         User user = userService.findUserByUserId(userId);
         if (user == null) {
@@ -114,10 +114,11 @@ public class OrderController {
         if (book == null) {
             return Result.error("未找到书籍");
         }
-        if(book.getRest()<number){
+        if (book.getRest() < number) {
             return Result.error("库存不足");
         }
-        orderService.addOrderByBookId(bookId, userId, number);
+        kafkaTemplate.send("Order-BookId", "bookId", bookId + "-" + userId.toString() + "-" + number);
+        //orderService.addOrderByBookId(bookId, userId, number);
         return Result.success();
     }
 

@@ -5,13 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e28a3d3-b5d0-4886-98db-10a5abf03b24" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/listener/OrderListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/listener/OrderResultListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../522031910318-作业6.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../522031910318-作业7.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../522031910318-作业8.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../522031910318-迭代2.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../522031910318-迭代3.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/IdentifyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/IdentifyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/UserAuthDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/UserAuthDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderItemDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderItemDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/UserAuthDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/UserAuthDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/JavaMailUntil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/JavaMailUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/UserAuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/UserAuthRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/UserAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/UserAuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/UserAuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/UserAuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Mycart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Mycart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/OrderAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/OrderAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/LoginAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LoginAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../作业6.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../作业7.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../作业8.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +52,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;chendingqi0304&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/chendingqi0304/e-bookstore.git&quot;,
+    &quot;accountId&quot;: &quot;1ddb7822-96ef-4eee-872b-e42e86cfc61d&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -81,7 +116,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.19072.23" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23339.15" />
       </set>
     </attachedChunks>
   </component>
@@ -192,6 +227,13 @@
       <workItem from="1727229753078" duration="954000" />
       <workItem from="1727237151308" duration="40000" />
       <workItem from="1727237197503" duration="6000" />
+      <workItem from="1727417528404" duration="2047000" />
+      <workItem from="1727420355442" duration="2273000" />
+      <workItem from="1727422854248" duration="3131000" />
+      <workItem from="1727680674235" duration="36000" />
+      <workItem from="1727680756259" duration="147000" />
+      <workItem from="1727680983384" duration="41000" />
+      <workItem from="1728527192114" duration="1946000" />
     </task>
     <servers />
   </component>

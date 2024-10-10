@@ -13,7 +13,7 @@ public class UserAuthDaoImpl implements UserAuthDao{
     private UserAuthRepository userAuthRepository;
 
     @Override
-    public UserAuth findByAccountAndPassword(String account, String password){
-        return userAuthRepository.findByAccountAndPassword(account,password);
+    public Boolean existByAccountAndPassword(String account, String password){
+        return userAuthRepository.existsByAccountAndPassword(account,password);
     }
 }

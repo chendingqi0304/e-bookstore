@@ -4,5 +4,7 @@ import org.example.ebookstore.entity.UserAuth;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserAuthRepository extends JpaRepository<UserAuth,Integer> {
-    UserAuth findByAccountAndPassword(String account, String password);
+    //UserAuth findByAccountAndPassword(String account, String password);
+
+    Boolean existsByAccountAndPassword(String account, String password);
 }

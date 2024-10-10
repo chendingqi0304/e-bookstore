@@ -12,4 +12,6 @@ public interface UserDao {
     void updateAccount(Integer userId, String account);
 
     User findByUsername(String username);
+
+    User findByAccount(String account);
 }

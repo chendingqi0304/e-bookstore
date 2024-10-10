@@ -1,13 +1,39 @@
-import React from "react";
+import React, {useState} from "react";
 import title from "../img/E-BookStore.png";
 import avatar from "../img/tx.jpg"
+import {Logout} from "../utils/LoginAPI";
 import {useSelector} from "react-redux";
+import {Button, InputNumber, Modal} from "antd";
+
+
 
 export default function Header() {
     const account = JSON.parse((useSelector((state) => state.account)).accountInfo);
-    //console.log(account)
+    const [ModalShow, setModalShow] = useState(false);
+    const [duration,setDuration] = useState(0);
+    const LogoutClick=async () => {
+        const response = await Logout();
+        if (response.code===1){
+            setDuration(response.data)
+        }
+        setModalShow(true);
+    }
+
+    function closeModal(){
+        window.location.href="/login"
+    }
     return (
         <>
+            <Modal
+                open={ModalShow}
+                closable={false}
+                footer={<Button onClick={closeModal}>
+                    确认
+                </Button>}
+            >
+                <div>{"会话持续时间"+duration}</div>
+
+            </Modal>
             <div
                 className="sticky top-0 z-40 lg:z-50 h-16 w-full max-w-8xl mx-auto bg-white flex-none flex border-solid border-b border-gray-200 shadow-md shadow-gray-200">
                 <div
@@ -56,6 +82,7 @@ export default function Header() {
                            className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline  h-auto w-auto">
                             <div>我的订单</div>
                         </a>
+                        <div className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline  h-auto w-auto" onClick={LogoutClick}>退出登录</div>
                     </div>
                 </div>
             </div>
