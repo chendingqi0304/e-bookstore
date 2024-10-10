@@ -69,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         //int a=10/0;
-        kafkaTemplate.send("Order-Result", "Success");
+        kafkaTemplate.send("Order-Result", order.getUserId()+"_Success");
     }
 
     @Override

@@ -7,6 +7,7 @@ import {Flex, InputNumber, Modal, Slider, Switch, Typography} from 'antd';
 import {GetBook} from "../utils/BookAPI";
 import {AddCartByBookId} from "../utils/CartAPI";
 import {BuyByBookId} from "../utils/OrderAPI";
+import {connectWebSocket, sendMessage} from "../utils/WebSocketAPI";
 
 const BuyBook = () => {
     const backendLink = useSelector((state) => state.backendLink.backendLink);
@@ -22,12 +23,12 @@ const BuyBook = () => {
         async function fetchBook(link) {
             const formdata = new FormData();
             formdata.append("bookId", parseInt(link));
-            const result=await GetBook(formdata)
-            if(result.code===1){
-                result.data.originprice=(result.data.originprice).toFixed(2);
-                result.data.price=(result.data.price).toFixed(2);
+            const result = await GetBook(formdata)
+            if (result.code === 1) {
+                result.data.originprice = (result.data.originprice).toFixed(2);
+                result.data.price = (result.data.price).toFixed(2);
                 setBook(result.data);
-            }else {
+            } else {
                 alert(result.msg)
             }
         }
@@ -46,15 +47,15 @@ const BuyBook = () => {
             return (
                 <>
                     <div className="text-gray-700">定价：<span
-                        className="text-red-700 text-2xl">￥{(book.price/100).toFixed(2)}</span></div>
+                        className="text-red-700 text-2xl">￥{(book.price / 100).toFixed(2)}</span></div>
                 </>
             )
         } else {
             return (
                 <>
                     <div className="text-gray-700">定价：<span
-                        className="text-red-700 text-xl line-through">￥{(book.originprice/100).toFixed(2)}</span>
-                        <span className="text-red-700 text-2xl">￥{(book.price/100).toFixed(2)}</span></div>
+                        className="text-red-700 text-xl line-through">￥{(book.originprice / 100).toFixed(2)}</span>
+                        <span className="text-red-700 text-2xl">￥{(book.price / 100).toFixed(2)}</span></div>
                 </>
             )
         }
@@ -68,12 +69,14 @@ const BuyBook = () => {
             const formdata = new FormData();
             formdata.append("bookId", parseInt(bookId));
             formdata.append("number", booknumber);
-            console.log(bookId)
-            const result=await BuyByBookId(formdata)
-            if(result.code===1){
-                alert("提交订单成功");
+            //console.log(bookId)
+            const result = await BuyByBookId(formdata)
+            await connectWebSocket(orderResult)
+
+            if (result.code === 1) {
+                alert("提交订单成功,订单正在处理");
                 setModalShow(false);
-            }else {
+            } else {
                 alert(result.msg)
             }
         }//提交订单
@@ -81,16 +84,24 @@ const BuyBook = () => {
             const formdata = new FormData();
             formdata.append("bookId", parseInt(bookId));
             formdata.append("number", booknumber);
-            const result=await AddCartByBookId(formdata)
-            if(result.code===1){
+            const result = await AddCartByBookId(formdata)
+            if (result.code === 1) {
                 alert("已添加到购物车");
                 setModalShow(false);
-            }
-            else {
+            } else {
                 alert(result.msg)
             }
 
         }//购物车
+    }
+
+    const orderResult = (result) => {
+        result=JSON.parse(result);
+
+        if (result.code === 1&&result.data==="Success") {
+            alert("订单处理完成")
+        }
+
     }
 
     function closeModal() {
@@ -107,7 +118,7 @@ const BuyBook = () => {
         setModalShow(true);
     }
 
-    const numberChange=(value)=> {
+    const numberChange = (value) => {
         console.log(value);
         setBooknumber(value);
     }
@@ -137,7 +148,8 @@ const BuyBook = () => {
                 {mode === 1 ? <div>输入地址:<input class="border-solid border-1 border-gray-300 rounded-md ml-2 mb-2"/>
                 </div> : <></>}
                 <div class="flex text-center items-center ">选择数量:
-                    <div class="ml-2"><InputNumber defaultValue={1} min={1} max={20} onChange={numberChange} value={booknumber}></InputNumber></div>
+                    <div class="ml-2"><InputNumber defaultValue={1} min={1} max={20} onChange={numberChange}
+                                                   value={booknumber}></InputNumber></div>
                 </div>
 
             </Modal>

@@ -19,6 +19,7 @@ public class SessionConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login")
                 .excludePathPatterns("/getIdentifyCode")
+                .excludePathPatterns("/ws")
                 .excludePathPatterns("/Identify");
 
     }

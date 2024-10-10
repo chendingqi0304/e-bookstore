@@ -12,6 +12,7 @@ public class OrderListener {
     @Autowired
     OrderService orderService;
 
+
     @KafkaListener(topics = "Order-BookId",groupId = "order-bookId-group")
     public void OrderBookListener(final String OrderInfo) {
         String[] Info = OrderInfo.split("-");
