@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Header from "../components/header"
 import {useParams} from 'react-router-dom';
 import {useSelector} from "react-redux";
-import {Flex, InputNumber, Modal, Slider, Switch, Typography} from 'antd';
+import {Button, Flex, InputNumber, Modal, Slider, Switch, Typography} from 'antd';
 import {GetBook} from "../utils/BookAPI";
 import {AddCartByBookId} from "../utils/CartAPI";
 import {BuyByBookId} from "../utils/OrderAPI";
@@ -16,6 +16,8 @@ const BuyBook = () => {
     const [bookId, setBookId] = useState("");
     const [rows, setRows] = useState(10);
     const [ModalShow, setModalShow] = useState(false);
+    const [ModalShow1, setModalShow1] = useState(false);
+    const [modalStr, setModalStr] = useState("");
     const [mode, setMode] = useState("");
     const [booknumber, setBooknumber] = useState(1);
 
@@ -74,8 +76,9 @@ const BuyBook = () => {
             await connectWebSocket(orderResult)
 
             if (result.code === 1) {
-                alert("提交订单成功,订单正在处理");
+                setModalStr("提交订单成功,订单正在处理");
                 setModalShow(false);
+                setModalShow1(true);
             } else {
                 alert(result.msg)
             }
@@ -86,8 +89,9 @@ const BuyBook = () => {
             formdata.append("number", booknumber);
             const result = await AddCartByBookId(formdata)
             if (result.code === 1) {
-                alert("已添加到购物车");
+                setModalStr("已添加到购物车");
                 setModalShow(false);
+                setModalShow1(true);
             } else {
                 alert(result.msg)
             }
@@ -96,16 +100,21 @@ const BuyBook = () => {
     }
 
     const orderResult = (result) => {
-        result=JSON.parse(result);
+        result = JSON.parse(result);
 
-        if (result.code === 1&&result.data==="Success") {
-            alert("订单处理完成")
+        if (result.code === 1 && result.data === "Success") {
+            setModalStr("订单处理完成");
+            setModalShow1(true)
         }
 
     }
 
     function closeModal() {
         setModalShow(false);
+    }
+
+    function closeModal1() {
+        setModalShow1(false)
     }
 
     function cartClick() {
@@ -151,6 +160,18 @@ const BuyBook = () => {
                     <div class="ml-2"><InputNumber defaultValue={1} min={1} max={20} onChange={numberChange}
                                                    value={booknumber}></InputNumber></div>
                 </div>
+
+            </Modal>
+            <Modal
+                open={ModalShow1}
+                closable={false}
+                footer={<Button
+                    onClick={closeModal1}
+                >
+                    确认
+                </Button>}
+            >
+                <div>{modalStr}</div>
 
             </Modal>
             <div class="w-full h-auto flex items-center justify-center">

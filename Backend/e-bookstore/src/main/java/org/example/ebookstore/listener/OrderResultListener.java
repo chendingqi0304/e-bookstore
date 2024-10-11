@@ -22,7 +22,7 @@ public class OrderResultListener {
         String[] Info = resultString.split("_");
         Integer userId = Integer.parseInt(Info[0]);
         String result = Info[1];
-        sleep(1000);
+        sleep(1000);//防止前端订阅过慢
         messagingTemplate.convertAndSendToUser(userId.toString(),"/order" , Result.success(result));
     }
 }
