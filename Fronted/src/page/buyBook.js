@@ -7,7 +7,7 @@ import {Button, Flex, InputNumber, Modal, Slider, Switch, Typography} from 'antd
 import {GetBook} from "../utils/BookAPI";
 import {AddCartByBookId} from "../utils/CartAPI";
 import {BuyByBookId} from "../utils/OrderAPI";
-import {connectWebSocket, sendMessage} from "../utils/WebSocketAPI";
+import {SocketConnect} from '../utils/WebSocketAPI';
 
 const BuyBook = () => {
     const backendLink = useSelector((state) => state.backendLink.backendLink);
@@ -65,7 +65,6 @@ const BuyBook = () => {
 
     const {name} = useParams();
 
-    //var book = bookInfo.find((bookInformation => bookInformation.name === name));
     async function handleSubmit() {
         if (mode === 1) {
             const formdata = new FormData();
@@ -73,7 +72,8 @@ const BuyBook = () => {
             formdata.append("number", booknumber);
             //console.log(bookId)
             const result = await BuyByBookId(formdata)
-            await connectWebSocket(orderResult)
+
+            SocketConnect(orderResult);
 
             if (result.code === 1) {
                 setModalStr("提交订单成功,订单正在处理");

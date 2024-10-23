@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e28a3d3-b5d0-4886-98db-10a5abf03b24" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/WebSocket/WebSocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/config/WebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/listener/OrderResultListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/listener/OrderResultListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/buyBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/buyBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/WebSocketAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/WebSocketAPI.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +88,16 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Alex\Desktop\e-bookstore\Fronted\src" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="run" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -208,7 +222,8 @@
       <workItem from="1728527192114" duration="1946000" />
       <workItem from="1728538596960" duration="8418000" />
       <workItem from="1728565648933" duration="9144000" />
-      <workItem from="1728654531950" duration="1071000" />
+      <workItem from="1728654531950" duration="1913000" />
+      <workItem from="1729583298506" duration="7189000" />
     </task>
     <servers />
   </component>

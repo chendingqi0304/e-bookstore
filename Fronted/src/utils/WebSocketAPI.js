@@ -1,44 +1,43 @@
-import {Stomp} from '@stomp/stompjs';
-import SockJS from 'sockjs-client';
 import {wsLink} from "./config";
+import {useEffect, useRef} from "react";
 
-let stompClient = null;
-// 创建 STOMP 客户端
-export const connectWebSocket = async (callback) => {
-    // 使用 SockJS 创建 WebSocket 连接
-    const account=sessionStorage.getItem('account');
-    const socket = new SockJS(wsLink);
-    stompClient =Stomp.over(socket)
 
-    // 连接成功后的回调
-    stompClient.onConnect = (frame) => {
-        console.log('Connected: ' + frame);
+let socketConnection = null;
+export const SocketConnect = async (onMessageCallback) => {
+    const account = sessionStorage.getItem('account');
+    const socket = new WebSocket(wsLink + "/"+JSON.parse(account).userId);
 
-        // 订阅 /topic/order 路径
-        stompClient.subscribe('/user/'+JSON.parse(account).userId+'/order', function (message) {
-            //console.log("Received message:", message.body);
-            callback(message.body);
-            stompClient.close();
-            socket.close();
-        });
+    // 连接打开时执行的回调
+    socket.onopen = () => {
+        console.log("WebSocket 连接成功");
     };
 
-    // 连接错误时的处理
-    stompClient.onStompError = (frame) => {
-        console.error('Broker reported error: ' + frame.headers['message']);
-        console.error('Additional details: ' + frame.body);
+    // 接收消息时执行的回调
+    socket.onmessage = (event) => {
+        console.log("接收到消息:", event.data);
+        if (onMessageCallback) {
+            onMessageCallback(event.data);
+        }
+        socket.close();
     };
 
-    // 开始连接
-    stompClient.activate();
-};
+    // 连接关闭时执行的回调
+    socket.onclose = () => {
+        console.log("WebSocket 连接关闭");
+    };
 
-// 发送消息
-export const sendMessage = (orderMessage) => {
-    if (stompClient && stompClient.connected) {
-        stompClient.publish({
-            destination: '/app/order', // 与服务器的 @MessageMapping("/order") 匹配
-            body: orderMessage,
-        });
-    }
-};
+    // 发生错误时执行的回调
+    socket.onerror = (error) => {
+        console.error("WebSocket 发生错误:", error);
+    };
+}
+
+// // 发送消息
+// export const sendMessage = (message) => {
+//     if (socketConnection.current && socketConnection.current.readyState === WebSocket.OPEN) {
+//         socketConnection.current.send(message);
+//     } else {
+//         console.error("WebSocket 未连接或已关闭");
+//     }
+// };
+
