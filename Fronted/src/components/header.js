@@ -66,6 +66,10 @@ export default function Header() {
                             </>
 
                             : <></>}
+                        <a href={`/BookAuthor`}
+                           className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
+                            <div>书籍作者查询</div>
+                        </a>
                         <a href={`/AllBook`}
                            className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
                             <div>全部书籍</div>

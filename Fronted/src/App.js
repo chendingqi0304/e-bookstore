@@ -19,6 +19,7 @@ import List from "./page/List";
 import AdminRoute from "./components/AdminRoute";
 import AllBook from "./page/AllBook";
 import OrderManagement from "./page/OrderManagement";
+import BookAuthor from "./page/BookAuthor";
 
 function App() {
 
@@ -26,18 +27,22 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/login" element={<LoginPage/>}/>
-                <Route path="/Main" element={<PrivateRoute><MainPage/></PrivateRoute>}/>
                 <Route path="/forgetPwd" element={<ForgetPwd/>}/>
+                <Route path="/register" element={<Register/>}/>
+
+                <Route path="/Main" element={<PrivateRoute><MainPage/></PrivateRoute>}/>
                 <Route path="/PersonalPage" element={<PrivateRoute><PersonalPage/></PrivateRoute>}/>
                 <Route path="/Mycart/:name" element={<PrivateRoute><Mycart/></PrivateRoute>}/>
                 <Route path="/book/:name" element={<PrivateRoute><BuyBook/></PrivateRoute>}/>
                 <Route path="/AllBook" element={<PrivateRoute><AllBook/></PrivateRoute>}></Route>
                 <Route path="/Myorder/:name" element={<PrivateRoute><Myorder/></PrivateRoute>}/>
-                <Route path="/register" element={<Register/>}/>
+                <Route path="/BookAuthor" element={<PrivateRoute><BookAuthor/></PrivateRoute>}></Route>
+
                 <Route path="/bookManagement" element={<AdminRoute><BookManagement/></AdminRoute>}/>
                 <Route path="/userManagement" element={<AdminRoute><UserManagement/></AdminRoute>}/>
                 <Route path="/List" element={<AdminRoute><List/></AdminRoute>}/>
                 <Route path="/orderManagement" element={<AdminRoute><OrderManagement/></AdminRoute>}/>
+
                 <Route path="*" element={<Navigate to="/login" replace />} />
                     {/* 其他路由规则 */}
             </Routes>

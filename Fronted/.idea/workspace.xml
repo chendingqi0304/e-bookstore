@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/java/org/example/book_author/controller/bookauthorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/java/org/example/book_author/dao/BookDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/java/org/example/book_author/dao/impl/BookDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/java/org/example/book_author/entity/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/java/org/example/book_author/entity/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/java/org/example/book_author/repository/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/java/org/example/book_author/service/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/java/org/example/book_author/service/impl/BookServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/ClientService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/eureka/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/page/BookAuthor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/BookAuthorAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/Backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/jpa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/EBookstoreApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/WebSocket/WebSocketServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/config/SessionConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/config/WebSocketConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/BookController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/CartController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/IdentifyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/BookDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/CartDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/IdentifyDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/OrderDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/OrderItemDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/UserAuthDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/CartDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/IdentifyDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderItemDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/UserAuthDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/dao/impl/UserDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/Cart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/IdentifyCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/JavaMailUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/OrderItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/Statistics.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/UserAuth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/entity/UserListItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/interceptor/SessionInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/listener/OrderListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/listener/OrderResultListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/BookRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/CartRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/IdentifyRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/OrderItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/OrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/UserAuthRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/BookService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/CartService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/IdentifyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/UserAuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/BookServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/CartServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/IdentifyServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/UserAuthServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/service/impl/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/java/org/example/ebookstore/utils/SessionUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/src/test/java/org/example/ebookstore/EBookstoreApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;chendingqi0304&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/chendingqi0304/e-bookstore.git&quot;,
+    &quot;accountId&quot;: &quot;1ddb7822-96ef-4eee-872b-e42e86cfc61d&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2oQ8ANgNy18ANdOheMcZreyylgO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="" />
+      <created>1730790296197</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730790296197</updated>
+      <workItem from="1730790297419" duration="135000" />
+      <workItem from="1730790473604" duration="5267000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
