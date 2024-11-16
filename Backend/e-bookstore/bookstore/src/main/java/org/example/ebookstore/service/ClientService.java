@@ -13,12 +13,12 @@ public class ClientService {
     private final WebClient webClient;
 
     public ClientService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:11240").build();
+        this.webClient = webClientBuilder.baseUrl("http://localhost:8090").build();
     }
 
     public List<Integer> getTotals(String request) {
         return webClient.post()
-                .uri("/bookprice")
+                .uri("/pricecalculate/bookprice")
                 .bodyValue(request)
                 .retrieve()
                 .bodyToMono(List.class).block();

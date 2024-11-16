@@ -145,7 +145,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Integer getBookPrice(Integer price,Integer number){
-        List<Integer> result=clientService.getTotals("[["+price+","+number+"]]");
+        List<List<Integer>> array = new ArrayList<>();
+        List<Integer> list;
+        list = new ArrayList<>();
+        list.add(price);
+        list.add(number);
+        array.add(list);
+        List<Integer> result=clientService.getTotals(array.toString());
         return result.get(0);
     }
 }
