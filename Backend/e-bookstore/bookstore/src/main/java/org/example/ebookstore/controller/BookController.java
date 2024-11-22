@@ -69,9 +69,8 @@ public class BookController {
         book.setIntroduction(introduction);
         byte[] imageBytes = picture.getBytes();
         String base64= Base64.getEncoder().encodeToString(imageBytes);
-        BookIcon bookIcon=new BookIcon(0,base64);
+        BookIcon bookIcon=new BookIcon(0,picture.getContentType(),base64);
         book.setBookIcon(bookIcon);
-        book.setType(picture.getContentType());
         book.setRest(rest);
         book.setIsbn(isbn);
         bookService.addBook(book);
@@ -148,12 +147,10 @@ public class BookController {
             if (picture != null) {
                 byte[] imageBytes = picture.getBytes();
                 String base64= Base64.getEncoder().encodeToString(imageBytes);
-                BookIcon bookIcon=new BookIcon(bookId,base64);
+                BookIcon bookIcon=new BookIcon(bookId,picture.getContentType(),base64);
                 newbook.setBookIcon(bookIcon);
-                newbook.setType(picture.getContentType());
             } else {
                 newbook.setBookIcon(book.getBookIcon());
-                newbook.setType(book.getType());
             }
 
             bookService.addBook(newbook);

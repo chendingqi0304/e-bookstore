@@ -31,12 +31,8 @@ public class Book {
     private String author;
     @Column(name = "introduction")
     private String introduction;
-//    @Column(name = "picture")
-//    private byte[] picture;
     @Column(name = "rest")
     private Integer rest;
-    @Column(name = "type")
-    private String type;
     @Column(name = "deleted")
     private boolean deleted;
     @Column(name = "isbn")

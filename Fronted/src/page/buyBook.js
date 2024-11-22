@@ -17,6 +17,7 @@ const BuyBook = () => {
     const [rows, setRows] = useState(10);
     const [ModalShow, setModalShow] = useState(false);
     const [ModalShow1, setModalShow1] = useState(false);
+    const [PictureShow, setPictureShow] = useState(false);
     const [modalStr, setModalStr] = useState("");
     const [mode, setMode] = useState("");
     const [booknumber, setBooknumber] = useState(1);
@@ -31,7 +32,7 @@ const BuyBook = () => {
                 result.data.price = (result.data.price).toFixed(2);
                 console.log(result.data);
                 setBook(result.data);
-
+                setPictureShow(true);
             } else {
                 alert(result.msg)
             }
@@ -134,6 +135,15 @@ const BuyBook = () => {
         setBooknumber(value);
     }
 
+    function showPic(){
+        if (PictureShow){
+            return (<><img className="h-96" src={`data:${book.bookIcon.type};base64, ${book.bookIcon.iconBase64}`}
+                           alt={"书籍图片"}/></>)
+        } else {
+            return (<></>);
+        }
+    }
+
     return (
         <>
             <html lang="en">
@@ -181,7 +191,7 @@ const BuyBook = () => {
                     <div className="flex justify-end items-center text-center">
                         <div
                             className="rounded-xl ring-2 ring-black ring-opacity-5 h-auto pt-4 pb-6 px-6">
-                            {/*<img className="h-96" src={`data:${book.type};base64, ${book.bookIcon.iconBase64}`} alt={"书籍图片"}/>*/}
+                            {showPic()}
                         </div>
                     </div>
                     <div className="h-auto w-2/3 p-5 leading-9 rounded-xl ring-2 ring-black ring-opacity-5">

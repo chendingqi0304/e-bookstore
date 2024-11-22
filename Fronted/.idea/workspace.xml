@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/config/TransactionConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/BookIcon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/repository/BookIconRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderItemDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/OrderItemDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/BookIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/BookIcon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/BookManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/BookManagement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/MainPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/buyBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/buyBook.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +101,8 @@
       <workItem from="1731740282170" duration="694000" />
       <workItem from="1732254853018" duration="378000" />
       <workItem from="1732255298217" duration="1190000" />
-      <workItem from="1732260528402" duration="3989000" />
+      <workItem from="1732260528402" duration="4623000" />
+      <workItem from="1732280983056" duration="5047000" />
     </task>
     <servers />
   </component>

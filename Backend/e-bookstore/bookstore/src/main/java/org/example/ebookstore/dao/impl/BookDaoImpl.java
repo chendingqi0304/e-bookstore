@@ -12,8 +12,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import com.alibaba.fastjson2.JSON;
 
-import java.nio.ByteBuffer;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -27,12 +25,31 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Page<Book> selectAll(Pageable pageable) {
-        return bookRepository.findAll(pageable);
+        Page<Book> booklist = bookRepository.findAll(pageable);
+
+        for (Book book : booklist.getContent()) {
+            Optional<BookIcon> icon = bookIconRepository.findById(book.getBookId());
+            if (icon.isPresent()) {
+                book.setBookIcon(icon.get());
+            } else {
+                book.setBookIcon(null);
+            }
+        }
+        return booklist;
     }
 
     @Override
     public Page<Book> selectUndeleted(Pageable pageable) {
-        return bookRepository.findByDeleted(false,pageable);
+        Page<Book> booklist= bookRepository.findByDeleted(false, pageable);
+        for (Book book : booklist.getContent()) {
+            Optional<BookIcon> icon = bookIconRepository.findById(book.getBookId());
+            if (icon.isPresent()) {
+                book.setBookIcon(icon.get());
+            } else {
+                book.setBookIcon(null);
+            }
+        }
+        return booklist;
     }
 
     @Override
@@ -40,35 +57,37 @@ public class BookDaoImpl implements BookDao {
         bookRepository.saveAndFlush(book);
         book.getBookIcon().setId(book.getBookId());
         bookIconRepository.save(book.getBookIcon());
-        int bookId=book.getBookId();
+        int bookId = book.getBookId();
         try {
-            redisTemplate.opsForValue().set("book"+bookId,JSON.toJSONString(book));
-        }catch (Exception e){}
+            redisTemplate.opsForValue().set("book" + bookId, JSON.toJSONString(book));
+        } catch (Exception e) {
+        }
 
     }
 
     @Override
     public Book getBookById(int bookId) {
-        Book book=null;
+        Book book = null;
 
-        String p=null;
+        String p = null;
         try {
             //p = (String) redisTemplate.opsForValue().get("book" + bookId);
+        } catch (Exception e) {
         }
-        catch (Exception e){}
         if (p == null) {
-            book =bookRepository.findByBookId(bookId);
-            Optional<BookIcon> icon=bookIconRepository.findById(bookId);
+            book = bookRepository.findByBookId(bookId);
+            Optional<BookIcon> icon = bookIconRepository.findById(bookId);
             if (icon.isPresent()) {
                 System.out.println("found");
                 book.setBookIcon(icon.get());
-            }else {
+            } else {
                 System.out.println("not found");
                 book.setBookIcon(null);
             }
             try {
                 redisTemplate.opsForValue().set("book" + bookId, JSON.toJSONString(book));
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
 
         } else {
             book = JSON.parseObject(p, Book.class);
@@ -80,18 +99,19 @@ public class BookDaoImpl implements BookDao {
     public void deleteBookByBookId(Integer bookId) {
 
         bookRepository.removeBook(bookId);
-        Book book=null;
-        String p=null;
+        Book book = null;
+        String p = null;
         try {
-            p = (String)redisTemplate.opsForValue().get("book" + bookId);
-        }catch (Exception e){}
+            p = (String) redisTemplate.opsForValue().get("book" + bookId);
+        } catch (Exception e) {
+        }
 
         if (p == null) {
-            book =bookRepository.findByBookId(bookId);
-            Optional<BookIcon> icon=bookIconRepository.findById(bookId);
+            book = bookRepository.findByBookId(bookId);
+            Optional<BookIcon> icon = bookIconRepository.findById(bookId);
             if (icon.isPresent()) {
                 book.setBookIcon(icon.get());
-            }else {
+            } else {
                 book.setBookIcon(null);
             }
         } else {
@@ -100,25 +120,27 @@ public class BookDaoImpl implements BookDao {
         }
         try {
             redisTemplate.opsForValue().set("book" + bookId, JSON.toJSONString(book));
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
 
     @Override
-    public void recoverBookByBookId(Integer bookId){
+    public void recoverBookByBookId(Integer bookId) {
         bookRepository.recoverBook(bookId);
-        Book book=null;
-        String p=null;
+        Book book = null;
+        String p = null;
         try {
-            p = (String)redisTemplate.opsForValue().get("book" + bookId);
-        }catch (Exception e){}
+            p = (String) redisTemplate.opsForValue().get("book" + bookId);
+        } catch (Exception e) {
+        }
 
         if (p == null) {
-            book =bookRepository.findByBookId(bookId);
-            Optional<BookIcon> icon=bookIconRepository.findById(bookId);
+            book = bookRepository.findByBookId(bookId);
+            Optional<BookIcon> icon = bookIconRepository.findById(bookId);
             if (icon.isPresent()) {
                 book.setBookIcon(icon.get());
-            }else {
+            } else {
                 book.setBookIcon(null);
             }
         } else {
@@ -127,12 +149,22 @@ public class BookDaoImpl implements BookDao {
         }
         try {
             redisTemplate.opsForValue().set("book" + bookId, JSON.toJSONString(book));
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
 
     @Override
-    public Page<Book> searchByTitle(String title,Pageable pageable){
-        return bookRepository.findByTitleContaining(title,pageable);
+    public Page<Book> searchByTitle(String title, Pageable pageable) {
+        Page<Book> booklist= bookRepository.findByTitleContaining(title, pageable);
+        for (Book book : booklist.getContent()) {
+            Optional<BookIcon> icon = bookIconRepository.findById(book.getBookId());
+            if (icon.isPresent()) {
+                book.setBookIcon(icon.get());
+            } else {
+                book.setBookIcon(null);
+            }
+        }
+        return booklist;
     }
 }

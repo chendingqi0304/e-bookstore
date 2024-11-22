@@ -27,7 +27,8 @@ const BookManagement = () => {
     }
 
     const columns = [
-        {title: "购买链接",
+        {
+            title: "购买链接",
             dataIndex: "bookId",
             key: "bookId",
             render: (text) =>
@@ -35,9 +36,11 @@ const BookManagement = () => {
         },
         {
             title: "封面",
-            dataIndex: "picture",
-            key: "picture",
-            render: (item) => <div className="flex items-center"><img src={`data:${item.type};base64, ${item}`}/></div>
+            dataIndex: "bookIcon",
+            key: "bookIcon",
+            render: (item) => <div className="flex items-center">
+                {item === null ? <></> : <img src={`data:${item.type};base64, ${item.iconBase64}`}/>}
+            </div>
         },
         {
             title: "书名",
@@ -187,6 +190,7 @@ const BookManagement = () => {
                     }
                 })
                 setBookList(list);
+                console.log(list);
                 setLoading(false);
                 setLength(result.data.totalElements - 1 || 0);
             } else {
@@ -194,7 +198,7 @@ const BookManagement = () => {
             }
         }
         const title = document.getElementById("search").value
-        if (title.value === "") {
+        if (title.value == null) {
             getBookList().then();
         } else {
             getSearchBookList(currentPage-1).then();
@@ -365,6 +369,7 @@ const showList=(e)=>{
 }
 
     const handlePageChange = (page) => {
+        setLoading(true)
         setCurrentPage(page);
     };
 
