@@ -109,7 +109,7 @@ const MainPage = () => {
                                 class="rounded-xl ring-1 ring-black ring-opacity-5 shadow-sm w-full pt-8 pb-6 px-6"
                                 href={`/book/${item.bookId}`}>
                                 <div class="flex items-center justify-center"><img className="h-96"
-                                                                                   src={`data:${item.type};base64, ${item.picture}`}/>
+                                                                                   src={`data:${item.bookIcon.type};base64, ${item.bookIcon.iconBase64}`}/>
                                 </div>
                                 <div class="flex items-center justify-center">
                                     <div className="text-red-700 text-xl">￥{(item.price / 100).toFixed(2)}</div>
