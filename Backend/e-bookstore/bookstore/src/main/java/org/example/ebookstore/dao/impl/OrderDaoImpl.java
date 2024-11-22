@@ -1,6 +1,6 @@
 package org.example.ebookstore.dao.impl;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.example.ebookstore.dao.OrderDao;
 import org.example.ebookstore.entity.*;
 import org.example.ebookstore.repository.BookRepository;

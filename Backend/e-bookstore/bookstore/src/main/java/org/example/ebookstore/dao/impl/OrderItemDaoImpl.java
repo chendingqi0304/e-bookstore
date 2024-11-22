@@ -1,7 +1,5 @@
 package org.example.ebookstore.dao.impl;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.example.ebookstore.dao.OrderItemDao;
 import org.example.ebookstore.entity.OrderItem;
 import org.example.ebookstore.repository.OrderItemRepository;

@@ -5,6 +5,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.example.ebookstore.entity.Book;
+import org.example.ebookstore.entity.BookIcon;
 import org.example.ebookstore.entity.Result;
 import org.example.ebookstore.entity.User;
 import org.example.ebookstore.service.BookService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Base64;
 
 @Slf4j
 @RestController
@@ -65,7 +67,10 @@ public class BookController {
         book.setOriginprice(originprice);
         book.setAuthor(author);
         book.setIntroduction(introduction);
-        book.setPicture(fileBytes);
+        byte[] imageBytes = picture.getBytes();
+        String base64= Base64.getEncoder().encodeToString(imageBytes);
+        BookIcon bookIcon=new BookIcon(0,base64);
+        book.setBookIcon(bookIcon);
         book.setType(picture.getContentType());
         book.setRest(rest);
         book.setIsbn(isbn);
@@ -141,12 +146,13 @@ public class BookController {
             newbook.setRest(rest);
             newbook.setIsbn(isbn);
             if (picture != null) {
-                byte[] fileBytes = null;
-                fileBytes = picture.getBytes();
-                newbook.setPicture(fileBytes);
+                byte[] imageBytes = picture.getBytes();
+                String base64= Base64.getEncoder().encodeToString(imageBytes);
+                BookIcon bookIcon=new BookIcon(bookId,base64);
+                newbook.setBookIcon(bookIcon);
                 newbook.setType(picture.getContentType());
             } else {
-                newbook.setPicture(book.getPicture());
+                newbook.setBookIcon(book.getBookIcon());
                 newbook.setType(book.getType());
             }
 

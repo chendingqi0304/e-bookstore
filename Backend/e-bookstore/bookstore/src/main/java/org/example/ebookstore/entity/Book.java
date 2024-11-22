@@ -31,8 +31,8 @@ public class Book {
     private String author;
     @Column(name = "introduction")
     private String introduction;
-    @Column(name = "picture")
-    private byte[] picture;
+//    @Column(name = "picture")
+//    private byte[] picture;
     @Column(name = "rest")
     private Integer rest;
     @Column(name = "type")
@@ -45,4 +45,10 @@ public class Book {
     public boolean getDeleted() {
         return deleted;
     }
+
+    @Setter
+    @Getter
+    @Transient
+    private BookIcon bookIcon;
+
 }

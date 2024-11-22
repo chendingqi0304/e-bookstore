@@ -29,7 +29,9 @@ const BuyBook = () => {
             if (result.code === 1) {
                 result.data.originprice = (result.data.originprice).toFixed(2);
                 result.data.price = (result.data.price).toFixed(2);
+                console.log(result.data);
                 setBook(result.data);
+
             } else {
                 alert(result.msg)
             }
@@ -179,7 +181,7 @@ const BuyBook = () => {
                     <div className="flex justify-end items-center text-center">
                         <div
                             className="rounded-xl ring-2 ring-black ring-opacity-5 h-auto pt-4 pb-6 px-6">
-                            <img className="h-96" src={`data:${book.type};base64, ${book.picture}`} alt={"书籍图片"}/>
+                            {/*<img className="h-96" src={`data:${book.type};base64, ${book.bookIcon.iconBase64}`} alt={"书籍图片"}/>*/}
                         </div>
                     </div>
                     <div className="h-auto w-2/3 p-5 leading-9 rounded-xl ring-2 ring-black ring-opacity-5">
