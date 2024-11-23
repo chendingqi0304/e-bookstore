@@ -1,7 +1,6 @@
 package org.example.ebookstore.controller;
 
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.example.ebookstore.entity.Book;
@@ -22,12 +21,13 @@ import java.util.Base64;
 
 @Slf4j
 @RestController
-
 public class BookController {
     @Autowired
     private BookService bookService;
     @Autowired
     private UserService userService;
+
+
 
     @PostMapping("/Allbooklist")
     public Result getAllBooklist(@RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
@@ -35,7 +35,7 @@ public class BookController {
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         log.info("userId:{} get booklist", userId);
-        Pageable bookpage= PageRequest.of(pageIndex,pageSize);
+        Pageable bookpage = PageRequest.of(pageIndex, pageSize);
         return Result.success(bookService.getAllBooks(bookpage));
     }
 
@@ -45,7 +45,7 @@ public class BookController {
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         log.info("userId:{} get booklist", userId);
-        Pageable bookpage= PageRequest.of(pageIndex,pageSize);
+        Pageable bookpage = PageRequest.of(pageIndex, pageSize);
         return Result.success(bookService.getBooks(bookpage));
     }
 
@@ -55,7 +55,7 @@ public class BookController {
         log.info("sessionID: {}", session.getId());
         Integer userId = (Integer) session.getAttribute("userId");
         User user = userService.findUserByUserId(userId);
-        if(user == null||user.getType()!=1) {
+        if (user == null || user.getType() != 1) {
             return Result.error("无权限");
         }
         log.info("addbook");
@@ -68,8 +68,8 @@ public class BookController {
         book.setAuthor(author);
         book.setIntroduction(introduction);
         byte[] imageBytes = picture.getBytes();
-        String base64= Base64.getEncoder().encodeToString(imageBytes);
-        BookIcon bookIcon=new BookIcon(0,picture.getContentType(),base64);
+        String base64 = Base64.getEncoder().encodeToString(imageBytes);
+        BookIcon bookIcon = new BookIcon(0, picture.getContentType(), base64);
         book.setBookIcon(bookIcon);
         book.setRest(rest);
         book.setIsbn(isbn);
@@ -146,8 +146,8 @@ public class BookController {
             newbook.setIsbn(isbn);
             if (picture != null) {
                 byte[] imageBytes = picture.getBytes();
-                String base64= Base64.getEncoder().encodeToString(imageBytes);
-                BookIcon bookIcon=new BookIcon(bookId,picture.getContentType(),base64);
+                String base64 = Base64.getEncoder().encodeToString(imageBytes);
+                BookIcon bookIcon = new BookIcon(bookId, picture.getContentType(), base64);
                 newbook.setBookIcon(bookIcon);
             } else {
                 newbook.setBookIcon(book.getBookIcon());
@@ -157,10 +157,17 @@ public class BookController {
             return Result.success();
         }
     }
-    @PostMapping("/searchByTitle")
-    public Result searchByTitle(@RequestParam("title") String title,@RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
 
-        Pageable bookpage= PageRequest.of(pageIndex,pageSize);
-        return Result.success(bookService.searchByTitle(title,bookpage));
+    @PostMapping("/searchByTitle")
+    public Result searchByTitle(@RequestParam("title") String title, @RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
+
+        Pageable bookpage = PageRequest.of(pageIndex, pageSize);
+        return Result.success(bookService.searchByTitle(title, bookpage));
+    }
+
+    @PostMapping("/searchByTag")
+    public Result searchByTag(@RequestParam("tag") String tag) {
+        //Pageable bookpage= PageRequest.of(pageIndex,pageSize);
+        return Result.success();
     }
 }

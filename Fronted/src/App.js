@@ -20,6 +20,7 @@ import AdminRoute from "./components/AdminRoute";
 import AllBook from "./page/AllBook";
 import OrderManagement from "./page/OrderManagement";
 import BookAuthor from "./page/BookAuthor";
+import BookTag from "./page/BookTag";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/AllBook" element={<PrivateRoute><AllBook/></PrivateRoute>}></Route>
                 <Route path="/Myorder/:name" element={<PrivateRoute><Myorder/></PrivateRoute>}/>
                 <Route path="/BookAuthor" element={<PrivateRoute><BookAuthor/></PrivateRoute>}></Route>
+                <Route path="/BookTag" element={<PrivateRoute><BookTag/></PrivateRoute>}></Route>
 
                 <Route path="/bookManagement" element={<AdminRoute><BookManagement/></AdminRoute>}/>
                 <Route path="/userManagement" element={<AdminRoute><UserManagement/></AdminRoute>}/>

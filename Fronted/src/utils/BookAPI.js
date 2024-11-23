@@ -128,3 +128,19 @@ export const SearchByTitle=async (formdata) => {
         throw new Error("搜索失败", error)
     }
 }
+
+export const SearchByTag = async (tag) => {
+    try {
+        const response = await fetch(backendLink + `/searchByTag?tag=${tag}`, {
+            method: "POST",
+            credentials: "include",
+        })
+        if (response.ok){
+            return await response.json();
+        }else {
+            alert("搜索失败")
+        }
+    }catch (error) {
+        throw new Error("搜索失败", error)
+    }
+}
