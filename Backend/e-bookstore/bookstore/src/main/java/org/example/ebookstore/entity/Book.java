@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Objects;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "book", schema = "e-bookstore-frame")
@@ -13,7 +16,9 @@ import lombok.*;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "bookId")
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
@@ -38,6 +43,13 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
+    @ManyToMany
+    @JoinTable(name = "book_booktag",
+    joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "booktag_id"))
+    @ToString.Exclude
+    private Set<BookTag> bookTags;
+
     public boolean getDeleted() {
         return deleted;
     }
@@ -47,4 +59,17 @@ public class Book {
     @Transient
     private BookIcon bookIcon;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(bookId, book.bookId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookId);  // Hash based on `id`
+    }
 }

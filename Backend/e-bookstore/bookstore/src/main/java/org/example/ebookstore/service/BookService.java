@@ -20,4 +20,6 @@ public interface BookService {
     void recoverBookByBookId(Integer bookId);
 
     Page<Book> searchByTitle(String title,Pageable pageable);
+
+    Page<Book> searchRetatedTag(String tag,Pageable pageable);
 }

@@ -166,8 +166,8 @@ public class BookController {
     }
 
     @PostMapping("/searchByTag")
-    public Result searchByTag(@RequestParam("tag") String tag) {
-        //Pageable bookpage= PageRequest.of(pageIndex,pageSize);
-        return Result.success();
+    public Result searchByTag(@RequestParam("tag") String tag, @RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
+        Pageable bookpage= PageRequest.of(pageIndex,pageSize);
+        return Result.success(bookService.searchRetatedTag(tag,bookpage));
     }
 }

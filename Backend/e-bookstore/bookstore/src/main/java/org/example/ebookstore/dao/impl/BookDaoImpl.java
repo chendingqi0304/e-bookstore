@@ -5,6 +5,7 @@ import org.example.ebookstore.entity.Book;
 import org.example.ebookstore.entity.BookIcon;
 import org.example.ebookstore.repository.BookIconRepository;
 import org.example.ebookstore.repository.BookRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import com.alibaba.fastjson2.JSON;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -158,6 +161,22 @@ public class BookDaoImpl implements BookDao {
     public Page<Book> searchByTitle(String title, Pageable pageable) {
         Page<Book> booklist= bookRepository.findByTitleContaining(title, pageable);
         for (Book book : booklist.getContent()) {
+            Optional<BookIcon> icon = bookIconRepository.findById(book.getBookId());
+            if (icon.isPresent()) {
+                book.setBookIcon(icon.get());
+            } else {
+                book.setBookIcon(null);
+            }
+        }
+        return booklist;
+    }
+
+    @Override
+    public Page<Book>searchByTagList(List<String> tag, Pageable pageable){
+        Page<Book> booklist= bookRepository.findBooksByTags(tag,pageable);
+        for (Book book : booklist.getContent()) {
+            System.out.println(book.getBookTags());
+
             Optional<BookIcon> icon = bookIconRepository.findById(book.getBookId());
             if (icon.isPresent()) {
                 book.setBookIcon(icon.get());

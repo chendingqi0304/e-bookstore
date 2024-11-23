@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/book_author/book_author.iml" filepath="$PROJECT_DIR$/book_author/book_author.iml" />
-      <module fileurl="file://$PROJECT_DIR$/price_calculate/related_tag/related_tag.iml" filepath="$PROJECT_DIR$/price_calculate/related_tag/related_tag.iml" />
     </modules>
   </component>
 </project>

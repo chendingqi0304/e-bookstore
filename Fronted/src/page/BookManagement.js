@@ -152,7 +152,6 @@ const BookManagement = () => {
     }
     const handleEdit = (e) => {
         const editIndex = e.target.id.substring(4);
-        console.log(editIndex);
         setBookId(bookList[editIndex].bookId);
         setBookTitle(bookList[editIndex].title);
         setBookPrice(bookList[editIndex].price / 100);
@@ -162,7 +161,6 @@ const BookManagement = () => {
         setPicture(bookList[editIndex].picture);
         setBookRest(bookList[editIndex].rest)
         setBookISBN(bookList[editIndex].isbn)
-        console.log(BookPrice)
         setModalShow(true);
     }
 
@@ -190,7 +188,6 @@ const BookManagement = () => {
                     }
                 })
                 setBookList(list);
-                console.log(list);
                 setLoading(false);
                 setLength(result.data.totalElements - 1 || 0);
             } else {

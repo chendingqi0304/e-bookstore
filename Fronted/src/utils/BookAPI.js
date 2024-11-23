@@ -129,9 +129,9 @@ export const SearchByTitle=async (formdata) => {
     }
 }
 
-export const SearchByTag = async (tag) => {
+export const SearchByTag = async (tag,index) => {
     try {
-        const response = await fetch(backendLink + `/searchByTag?tag=${tag}`, {
+        const response = await fetch(backendLink + `/searchByTag?tag=${tag}&index=${index}&size=${10}`, {
             method: "POST",
             credentials: "include",
         })

@@ -1,6 +1,8 @@
 package org.example.ebookstore.service;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
+import org.example.ebookstore.entity.BookTag;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -22,5 +24,16 @@ public class ClientService {
                 .bodyValue(request)
                 .retrieve()
                 .bodyToMono(List.class).block();
+    }
+
+    public List<BookTag> getRelatedTags(String tag) {
+        return webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/relatedtag/RelateTag")
+                        .queryParam("tag", tag)
+                        .build())
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<BookTag>>() {})
+                .block();
     }
 }

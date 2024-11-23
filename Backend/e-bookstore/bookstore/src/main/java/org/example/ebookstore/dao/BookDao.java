@@ -10,6 +10,7 @@ public interface BookDao {
     Page<Book> selectAll(Pageable pageable);
 
     Page<Book> selectUndeleted(Pageable pageable);
+
     void insert(Book book);
 
     Book getBookById(int bookId);
@@ -18,5 +19,7 @@ public interface BookDao {
 
     void recoverBookByBookId(Integer bookId);
 
-    Page<Book> searchByTitle(String title,Pageable pageable);
+    Page<Book> searchByTitle(String title, Pageable pageable);
+
+    Page<Book> searchByTagList(List<String> tag, Pageable pageable);
 }

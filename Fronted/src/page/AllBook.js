@@ -28,9 +28,9 @@ const AllBook = () => {
         },
         {
             title: "封面",
-            dataIndex: "picture",
-            key: "picture",
-            render: (item) => <div class="flex items-center"><img src={`data:${item.type};base64, ${item}`}/></div>
+            dataIndex: "bookIcon",
+            key: "bookIcon",
+            render: (item) => <div class="flex items-center">{item === null ? <></> : <img src={`data:${item.type};base64, ${item.iconBase64}`}/>}</div>
         },
         {
             title: "书名",
@@ -110,6 +110,7 @@ const AllBook = () => {
                     }
                 })
                 setBookList(list);
+                console.log(list);
                 setLoading(false);
                 setLength(result.data.totalElements - 1 || 0);
             } else {
@@ -137,7 +138,7 @@ const AllBook = () => {
             }
         }
         const title = document.getElementById("search").value
-        if (title.value === "") {
+        if (title.value == null) {
             getBookList().then();
         } else {
             getSearchBookList(currentPage-1).then();

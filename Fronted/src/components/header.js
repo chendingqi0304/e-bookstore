@@ -66,6 +66,10 @@ export default function Header() {
                             </>
 
                             : <></>}
+                        <a href={`/BookTag`}
+                           className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
+                            <div>标签查询</div>
+                        </a>
                         <a href={`/BookAuthor`}
                            className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline h-auto w-auto">
                             <div>书籍作者查询</div>
@@ -86,7 +90,10 @@ export default function Header() {
                            className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline  h-auto w-auto">
                             <div>我的订单</div>
                         </a>
-                        <div className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline  h-auto w-auto" onClick={LogoutClick}>退出登录</div>
+                        <div
+                            className="text-gray-400 hover:text-gray-500 transition-colors duration-200 underline  h-auto w-auto"
+                            onClick={LogoutClick}>退出登录
+                        </div>
                     </div>
                 </div>
             </div>

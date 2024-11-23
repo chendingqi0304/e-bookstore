@@ -25,7 +25,10 @@ public class GatewayApplication {
                         .uri("lb://BOOK-AUTHOR"))
                 .route(r->r.path("/pricecalculate/**")
                         .filters(f->f.rewritePath("/pricecalculate",""))
-                        .uri("lb://PRICE-CALCULATE")
+                        .uri("lb://PRICE-CALCULATE"))
+                .route(r->r.path("/relatedtag/**")
+                        .filters(f->f.rewritePath("/relatedtag",""))
+                        .uri("lb://RELATED-TAG")
                 )
                 .build();
     }
