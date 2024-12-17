@@ -105,42 +105,92 @@ export const EditBook = async (formdata) => {
         })
         if (response.ok) {
             return await response.json();
-        }else {
+        } else {
             alert("编辑失败")
         }
     } catch (error) {
         throw new Error("编辑失败", error)
     }
 }
-export const SearchByTitle=async (formdata) => {
+export const SearchByTitle = async (formdata) => {
     try {
-        const response=await fetch(backendLink + "/searchByTitle", {
+        const response = await fetch(backendLink + "/searchByTitle", {
             method: "POST",
             credentials: "include",
             body: formdata,
         })
-        if (response.ok){
+        if (response.ok) {
             return await response.json();
-        }else {
+        } else {
             alert("搜索失败")
         }
-    }catch (error) {
+    } catch (error) {
         throw new Error("搜索失败", error)
     }
 }
 
-export const SearchByTag = async (tag,index) => {
+export const SearchByName = async (title, page, size) => {
+    const graphqlQuery = {
+        query: `
+            query($title: String!, $page: Int!, $size: Int!) {
+                searchByName(title: $title, page: $page, size: $size) {
+                    code
+                    msg
+                    data {
+                        content {
+                            bookId
+                            title
+                            price
+                            author
+                            introduction
+                            rest
+                            isbn
+                            bookIcon{
+                                type
+                                iconBase64
+                            }
+                        }
+                        totalElements
+                        totalPages
+                    }
+                }
+            }
+        `,
+        variables: {title, page, size}
+    };
+
+
+    try {
+        const response = await fetch(backendLink + "/graphql", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(graphqlQuery),
+        })
+        if (response.ok) {
+            return await response.json();
+        } else {
+            alert("搜索失败")
+        }
+    } catch (error) {
+        throw new Error("搜索失败", error)
+    }
+}
+
+export const SearchByTag = async (tag, index) => {
     try {
         const response = await fetch(backendLink + `/searchByTag?tag=${tag}&index=${index}&size=${10}`, {
             method: "POST",
             credentials: "include",
         })
-        if (response.ok){
+        if (response.ok) {
             return await response.json();
-        }else {
+        } else {
             alert("搜索失败")
         }
-    }catch (error) {
+    } catch (error) {
         throw new Error("搜索失败", error)
     }
 }

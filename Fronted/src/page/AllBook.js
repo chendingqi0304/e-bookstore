@@ -2,7 +2,7 @@ import Header from "../components/header";
 import React, {useEffect} from "react";
 import {useState} from "react";
 import {InputNumber, Modal, Pagination, Space, Table, Typography} from "antd";
-import {AddBook, AllBookList, DeleteBook, EditBook, RecoverBook, SearchByTitle} from "../utils/BookAPI";
+import {AddBook, AllBookList, DeleteBook, EditBook, RecoverBook, SearchByName, SearchByTitle} from "../utils/BookAPI";
 
 const {Paragraph} = Typography;
 const AllBook = () => {
@@ -160,7 +160,13 @@ const AllBook = () => {
         formData.append("title", title)
         formData.append("index", index);
         formData.append("size", 10);
-        const result = await SearchByTitle(formData)
+
+        let result = await SearchByName(title,index,10)
+        if (!result.data)return;
+        result= result.data;
+        if (!result.searchByName)return;
+        result=result.searchByName
+
         if (result.code === 1) {
             const list = [];
             result.data.content.map((book) => {

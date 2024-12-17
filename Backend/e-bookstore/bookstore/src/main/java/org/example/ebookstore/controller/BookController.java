@@ -13,6 +13,9 @@ import org.example.ebookstore.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +24,7 @@ import java.util.Base64;
 
 @Slf4j
 @RestController
+@Controller
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -162,6 +166,13 @@ public class BookController {
     public Result searchByTitle(@RequestParam("title") String title, @RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
 
         Pageable bookpage = PageRequest.of(pageIndex, pageSize);
+        return Result.success(bookService.searchByTitle(title, bookpage));
+    }
+
+    @QueryMapping
+    public Result searchByName(@Argument String title,@Argument Integer page, @Argument Integer size) {
+        log.info("enter");
+        Pageable bookpage = PageRequest.of(page, size);
         return Result.success(bookService.searchByTitle(title, bookpage));
     }
 

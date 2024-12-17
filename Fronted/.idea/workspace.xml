@@ -4,32 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/BookTag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/repository/BookTagRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/BookDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/repository/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/impl/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/impl/BookServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/gateway/src/main/java/org/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/gateway/src/main/java/org/example/gateway/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/java/org/example/related_tag/controller/BookTagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/java/org/example/related_tag/controller/BookTagController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/java/org/example/related_tag/entity/BookTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/java/org/example/related_tag/entity/BookTag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/java/org/example/related_tag/entity/Result.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/AllBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/AllBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/BookManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/BookManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/BookTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/BookTag.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/BookAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BookAPI.js" afterDir="false" />
-    </list>
+    <list default="true" id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="删除mysql备份" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +74,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.112" />
       </set>
     </attachedChunks>
   </component>
@@ -107,6 +82,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
       <changelist id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="" />
+      <changelist id="" name="删除mysql备份" comment="" />
       <created>1730790296197</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -121,11 +97,77 @@
       <workItem from="1732260528402" duration="4623000" />
       <workItem from="1732280983056" duration="6027000" />
       <workItem from="1732327070473" duration="6973000" />
-      <workItem from="1732363681619" duration="5246000" />
+      <workItem from="1732363681619" duration="5641000" />
+      <workItem from="1733194648440" duration="466000" />
+      <workItem from="1733195377452" duration="1211000" />
+      <workItem from="1734412547620" duration="9885000" />
     </task>
+    <task id="LOCAL-00001" summary="hw8 complete">
+      <option name="closed" value="true" />
+      <created>1732374690820</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732374690820</updated>
+    </task>
+    <task id="LOCAL-00002" summary="hw10 nginx">
+      <option name="closed" value="true" />
+      <created>1734418088280</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734418088280</updated>
+    </task>
+    <task id="LOCAL-00003" summary="hw10 complete">
+      <option name="closed" value="true" />
+      <created>1734424569269</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734424569269</updated>
+    </task>
+    <task id="LOCAL-00004" summary="删除mysql备份">
+      <option name="closed" value="true" />
+      <created>1734425264993</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1734425264993</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="hw8 complete" />
+    <MESSAGE value="hw10 nginx" />
+    <MESSAGE value="hw10 front" />
+    <MESSAGE value="删除mysql备份" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除mysql备份" />
   </component>
 </project>

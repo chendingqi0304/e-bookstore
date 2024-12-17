@@ -1,0 +1,45 @@
+type Query {
+    searchByName(title: String!, page: Int!, size: Int!): Result
+}
+
+# Result 类型定义
+type Result {
+    code: Int!
+    msg: String
+    data: BookPage
+}
+
+# Book 分页信息封装
+type BookPage {
+    content: [Book!]!        # 当前页的 Book 列表
+    totalElements: Int!      # 总元素数量
+    totalPages: Int!         # 总页数
+}
+
+# Book 类型定义
+type Book {
+    bookId: Int!
+    title: String!
+    price: Int!
+    originprice: Int!
+    author: String!
+    introduction: String!
+    rest: Int!
+    deleted: Boolean!
+    isbn: String!
+    bookIcon:BookIcon!
+    bookTags: [BookTag]     # 书籍标签
+}
+
+# 书籍标签类型
+type BookTag {
+    booktagId: Int!
+    name: String!
+}
+
+#书籍图像类型
+type BookIcon{
+    id:Int!
+    type:String!
+    iconBase64:String!
+}
