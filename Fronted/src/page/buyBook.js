@@ -7,7 +7,6 @@ import {Button, Flex, InputNumber, Modal, Slider, Switch, Typography} from 'antd
 import {GetBook} from "../utils/BookAPI";
 import {AddCartByBookId} from "../utils/CartAPI";
 import {BuyByBookId} from "../utils/OrderAPI";
-import {SocketConnect} from '../utils/WebSocketAPI';
 
 const BuyBook = () => {
     const backendLink = useSelector((state) => state.backendLink.backendLink);
@@ -73,16 +72,13 @@ const BuyBook = () => {
             const formdata = new FormData();
             formdata.append("bookId", parseInt(bookId));
             formdata.append("number", booknumber);
-            //console.log(bookId)
-            const result = await BuyByBookId(formdata)
-
-            SocketConnect(orderResult);
-
-            if (result.code === 1) {
-                setModalStr("提交订单成功,订单正在处理");
+            console.log(bookId)
+            const result=await BuyByBookId(formdata)
+            console.log(result)
+            if(result.code===1){
+                alert("提交订单成功");
                 setModalShow(false);
-                setModalShow1(true);
-            } else {
+            }else {
                 alert(result.msg)
             }
         }//提交订单
@@ -90,27 +86,27 @@ const BuyBook = () => {
             const formdata = new FormData();
             formdata.append("bookId", parseInt(bookId));
             formdata.append("number", booknumber);
-            const result = await AddCartByBookId(formdata)
-            if (result.code === 1) {
-                setModalStr("已添加到购物车");
+            const result=await AddCartByBookId(formdata)
+            if(result.code===1){
+                alert("已添加到购物车");
                 setModalShow(false);
-                setModalShow1(true);
-            } else {
+            }
+            else {
                 alert(result.msg)
             }
 
         }//购物车
     }
 
-    const orderResult = (result) => {
-        result = JSON.parse(result);
-
-        if (result.code === 1 && result.data === "Success") {
-            setModalStr("订单处理完成");
-            setModalShow1(true)
-        }
-
-    }
+    // const orderResult = (result) => {
+    //     result = JSON.parse(result);
+    //
+    //     if (result.code === 1 && result.data === "Success") {
+    //         setModalStr("订单处理完成");
+    //         setModalShow1(true)
+    //     }
+    //
+    // }
 
     function closeModal() {
         setModalShow(false);

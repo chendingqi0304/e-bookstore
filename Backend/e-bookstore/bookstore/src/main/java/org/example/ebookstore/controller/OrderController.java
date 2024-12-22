@@ -11,8 +11,6 @@ import org.example.ebookstore.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -30,8 +28,6 @@ public class OrderController {
     private BookService bookService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
 
     @PostMapping("/getOrder")
     public Result getOrder(@RequestParam("index") int pageIndex, @RequestParam("size") int pageSize) {
@@ -118,8 +114,7 @@ public class OrderController {
         if (book.getRest() < number) {
             return Result.error("库存不足");
         }
-        kafkaTemplate.send("Order-BookId", "bookId", bookId + "-" + userId.toString() + "-" + number);
-        //orderService.addOrderByBookId(bookId, userId, number);
+        orderService.addOrderByBookId(bookId, userId, number);
         return Result.success();
     }
 

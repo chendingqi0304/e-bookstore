@@ -14,7 +14,7 @@ public class ClientService {
     private final WebClient webClient;
 
     public ClientService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8090").build();
+        this.webClient = webClientBuilder.baseUrl("http://gateway:8090").build();
     }
 
     public List<Integer> getTotals(String request) {

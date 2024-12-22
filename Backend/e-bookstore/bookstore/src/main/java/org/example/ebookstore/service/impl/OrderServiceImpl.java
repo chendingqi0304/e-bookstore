@@ -12,7 +12,6 @@ import org.example.ebookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -33,8 +32,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderItemDao orderItemDao;
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-    @Autowired
     private ClientService clientService;
 
     @Override
@@ -54,29 +51,20 @@ public class OrderServiceImpl implements OrderService {
         order.setUserId(userId);
         order.setOrderTime(LocalDateTime.now());
         orderDao.insertOrder(order);
-        //int a=10/0;
         OrderItem orderItem = new OrderItem();
         Book book = bookDao.getBookById(bookId);
         book.setRest(book.getRest() - number);
-        if (book.getRest() < 0) {
-            kafkaTemplate.send("Order-Result", "Failed");
-            return;
-        }
         orderItem.setOrder(order);
         orderItem.setNumber(number);
         orderItem.setBookId(bookId);
         orderItem.setPrice(getBookPrice(book.getPrice(),number));
 
         orderItem.setName(book.getTitle());
-        //int a=10/0;
         try {
             orderItemDao.addOrderItem(orderItem);
         }catch (Exception e){
             e.printStackTrace();
         }
-
-        //int a=10/0;
-        kafkaTemplate.send("Order-Result", order.getUserId()+"_Success");
     }
 
     @Override

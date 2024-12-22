@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="删除mysql备份" />
+    <list default="true" id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="hw10 complete">
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/resources/application-docker.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/resources/application-docker.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/eureka/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/gateway/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/mysql_docker/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/mysql_docker/init.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/price_calculate/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/book_author/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/WebSocket/WebSocketServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/config/WebSocketConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/controller/IdentifyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/controller/IdentifyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/dao/impl/BookDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/JavaMailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/entity/JavaMailUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/listener/OrderListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/listener/OrderResultListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/java/org/example/ebookstore/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/bookstore/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/price_calculate/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/price_calculate/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/e-bookstore/related_tag/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/BookTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/BookTag.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/buyBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/buyBook.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +51,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -74,7 +107,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.112" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
       </set>
     </attachedChunks>
   </component>
@@ -82,7 +115,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
       <changelist id="7303f027-4d19-4f4c-894e-680730508ee0" name="更改" comment="" />
-      <changelist id="" name="删除mysql备份" comment="" />
       <created>1730790296197</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -100,7 +132,8 @@
       <workItem from="1732363681619" duration="5641000" />
       <workItem from="1733194648440" duration="466000" />
       <workItem from="1733195377452" duration="1211000" />
-      <workItem from="1734412547620" duration="9885000" />
+      <workItem from="1734412547620" duration="10214000" />
+      <workItem from="1734845506568" duration="3656000" />
     </task>
     <task id="LOCAL-00001" summary="hw8 complete">
       <option name="closed" value="true" />
@@ -134,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734425264993</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="hw10 complete">
+      <option name="closed" value="true" />
+      <created>1734425591708</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1734425591708</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +209,7 @@
     <MESSAGE value="hw10 nginx" />
     <MESSAGE value="hw10 front" />
     <MESSAGE value="删除mysql备份" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除mysql备份" />
+    <MESSAGE value="hw10 complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="hw10 complete" />
   </component>
 </project>

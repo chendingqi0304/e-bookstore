@@ -131,7 +131,7 @@ const BookTag = () => {
         }
         const title = document.getElementById("search").value
         if (title.value == null) {
-            getBookList().then();
+            //getBookList().then();
         } else {
             getBookList(currentPage-1).then();
         }
@@ -145,7 +145,7 @@ const BookTag = () => {
         setLoading(true);
         const title = document.getElementById("search").value
         if (title === null) {
-            alert("请输入书名")
+            alert("请输入标签")
             return
         }
 
@@ -194,11 +194,11 @@ const BookTag = () => {
         <body>
         <Header class=""></Header>
         <div class="mx-24 mt-8">
-            <div class="text-3xl py-5">全部书籍</div>
+            <div class="text-3xl py-5">标签搜索</div>
 
             <div class="flex items-center">
                 <input type="text" className="my-3 mx-3 border border-solid rounded-md" id="search"
-                       placeholder={"搜索书名"}></input>
+                       placeholder={"搜索标签"}></input>
                 <button onClick={handleSearch}
                         class="focus:outline-none text-sm w-auto py-3 rounded-md font-semibold text-white bg-blue-500 ring-4 flex p-4 h-6 justify-center items-center text-center gap-5">搜索
                 </button>

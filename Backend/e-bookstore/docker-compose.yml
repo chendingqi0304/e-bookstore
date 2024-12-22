@@ -1,0 +1,108 @@
+services:
+  eureka-server:
+    image: eureka
+    container_name: eureka-server
+    ports:
+      - "8040:8040"
+    environment:
+      - EUREKA_INSTANCE_HOSTNAME=eureka-server
+      - EUREKA_CLIENT_REGISTER_WITH_EUREKA=false
+      - EUREKA_CLIENT_FETCH_REGISTRY=false
+      - EUREKA_SERVER_ENABLE_SELF_PRESERVATION=false
+    networks:
+      - app-network
+
+  gateway:
+    image: gateway
+    container_name: gateway
+    depends_on:
+      - eureka-server
+    ports:
+      - "8090:8090"
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8040/eureka
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - EUREKA_INSTANCE_IP_ADDRESS=gateway
+      - SPRING_CLOUD_LOADBALANCER_PREFER_IP=true
+    networks:
+      - app-network
+
+  book_author:
+    image: book_author
+    container_name: book-author
+    depends_on:
+      - eureka-server
+      - mysql
+    ports:
+      - "11230:11230"
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8040/eureka
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - EUREKA_INSTANCE_IP_ADDRESS=book-author
+      - SPRING_PROFILES_ACTIVE=docker
+      - MYSQL_HOST=mysql
+    networks:
+      - app-network
+
+  price_calculate:
+    image: price_calculate
+    container_name: price-calculate
+    depends_on:
+      - eureka-server
+    ports:
+      - "11240:11240"
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8040/eureka
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - EUREKA_INSTANCE_IP_ADDRESS=price-calculate
+    networks:
+      - app-network
+
+  related_tag:
+    image: related_tag
+    container_name: related-tag
+    depends_on:
+      - eureka-server
+    ports:
+      - "11250:11250"
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8040/eureka
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - EUREKA_INSTANCE_IP_ADDRESS=related-tag
+    networks:
+      - app-network
+
+  ebookstore:
+    image: e-bookstore
+    container_name: e-bookstore
+    depends_on:
+      - gateway
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - MYSQL_HOST=mysql
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql_ebookstore
+    container_name: mysql-ebookstore
+    ports:
+      - "3307:3306" # 映射主机和容器的 MySQL 端口
+    environment:
+      - MYSQL_ROOT_PASSWORD=Chen20040304
+      - MYSQL_DATABASE=e-bookstore-frame
+    networks:
+      - app-network
+    volumes:
+      - mysql-data:/var/lib/mysql # 可选：数据持久化
+    command: --user=mysql
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
