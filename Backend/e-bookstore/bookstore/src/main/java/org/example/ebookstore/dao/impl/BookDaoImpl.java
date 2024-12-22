@@ -58,8 +58,11 @@ public class BookDaoImpl implements BookDao {
     @Override
     public void insert(Book book) {
         bookRepository.saveAndFlush(book);
-        book.getBookIcon().setId(book.getBookId());
-        bookIconRepository.save(book.getBookIcon());
+        if (book.getBookIcon() != null) {
+            book.getBookIcon().setId(book.getBookId());
+            bookIconRepository.save(book.getBookIcon());
+        }
+
         int bookId = book.getBookId();
         try {
             redisTemplate.opsForValue().set("book" + bookId, JSON.toJSONString(book));
