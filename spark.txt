@@ -1,0 +1,4 @@
+构建点maven-spark-生存期-package
+
+在C:\Users\Alex\Desktop\e-bookstore\Backend\e-bookstore\spark>下执行：
+spark-submit --class "WordCount" --master local target/spark-1.0-SNAPSHOT.jar

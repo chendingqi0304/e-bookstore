@@ -1,0 +1,18 @@
+C++, C++
+C++ Primer 5th Edition
+
+Fully updated and recast for the newly released C++11 standard, this authoritative and comprehensive introduction to C++ will help you to learn the language fast, and to use it in modern, highly effective ways. Highlighting today’s best practices, the authors show how to use both the core language and its standard library to write efficient, readable, and powerful code.
+C++ Primer, Fifth Edition, introduces the C++ standard library from the outset, drawing on its common functions and facilities to help you write useful programs without first having to master every language detail. The book’s many examples have been revised to use the new language features and demonstrate how to make the best use of them. This book is a proven tutorial for those new to C++, an authoritative discussion of core C++ concepts and techniques, and a valuable resource for experienced programmers, especially those eager to see C++11 enhancements illuminated.
+
+Computer Systems: A Programmer's Perspective, 3 Edition
+
+Computer Systems: A Programmer's Perspective, 3 Edition Third Edition Edition by David and Bryant, & Randal O'Hallaron Condition: New. This is called "New" on the front page cover and it is the 2018 Edition.
+
+Introduction to Algorithms, fourth edition
+
+A comprehensive update of the leading algorithms text, with new material on matchings in bipartite graphs, online algorithms, machine learning, and other topics.
+Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and comprehensiveness. It covers a broad range of algorithms in depth, yet makes their design and analysis accessible to all levels of readers, with self-contained chapters and algorithms in pseudocode. Since the publication of the first edition, Introduction to Algorithms has become the leading algorithms text in universities worldwide as well as the standard reference for professionals. This fourth edition has been updated throughout.
+
+Head First Java: A Brain-Friendly Guide
+
+Head First Java is a complete learning experience in Java and object-oriented programming. With this book, you'll learn the Java language with a unique method that goes beyond how-to manuals and helps you become a great programmer. Through puzzles, mysteries, and soul-searching interviews with famous Java objects, you'll quickly get up to speed on Java's fundamentals and advanced topics including lambdas, streams, generics, threading, networking, and the dreaded desktop GUI. If you have experience with another programming language, Head First Java will engage your brain with more modern approaches to coding--the sleeker, faster, and easier to read, write, and maintain Java of today.
